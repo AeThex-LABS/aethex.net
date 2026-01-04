@@ -31,10 +31,14 @@ const ApiDocs: React.FC = () => {
               <div>
                 <h4 className="text-sm font-semibold text-gray-700 mb-2">Initialize</h4>
                 <div className="bg-gray-900 text-gray-100 p-4 rounded-lg font-mono text-sm overflow-x-auto">
-                  <span className="text-purple-400">import</span> AeThex <span className="text-purple-400">from</span> <span className="text-green-400">'@aethex/sdk'</span>;{'\n\n'}
-                  <span className="text-purple-400">const</span> client = <span className="text-purple-400">new</span> <span className="text-blue-400">AeThex</span>({'{'}{'{\n'}
-                  {'  '}apiKey: <span className="text-green-400">'your-api-key'</span>{'{\n'}
-                  {'}'});
+                  <pre className="text-gray-100">
+                    <code>
+                      <span className="text-purple-400">import</span> AeThex <span className="text-purple-400">from</span> <span className="text-green-400">'@aethex/sdk'</span>;{'\n\n'}
+                      <span className="text-purple-400">const</span> client = <span className="text-purple-400">new</span> <span className="text-blue-400">AeThex</span>{'({\n'}
+                      {'  '}apiKey: <span className="text-green-400">'your-api-key'</span>{'\n'}
+                      {'});'}
+                    </code>
+                  </pre>
                 </div>
               </div>
             </div>
@@ -47,17 +51,21 @@ const ApiDocs: React.FC = () => {
             </p>
             
             <div className="bg-gray-900 text-gray-100 p-4 rounded-lg font-mono text-sm overflow-x-auto">
-              <span className="text-purple-400">const</span> response = <span className="text-purple-400">await</span> client.<span className="text-blue-400">users</span>.<span className="text-yellow-400">create</span>({'{'}{'{\n'}
-              {'  '}email: <span className="text-green-400">'user@example.com'</span>,{'{\n'}
-              {'  '}name: <span className="text-green-400">'John Doe'</span>{'{\n'}
-              {'}'});{'\n\n'}
-              console.<span className="text-yellow-400">log</span>(response.<span className="text-blue-400">data</span>);{'\n'}
-              <span className="text-gray-500">// {'{'}{'{\n'}
-              //   id: 'usr_123abc',{'{\n'}
-              //   email: 'user@example.com',{'{\n'}
-              //   name: 'John Doe',{'{\n'}
-              //   created_at: '2024-01-01T00:00:00Z'{'{\n'}
-              // {'}'}</span>
+              <pre className="text-gray-100">
+                <code>
+                  <span className="text-purple-400">const</span> response = <span className="text-purple-400">await</span> client.<span className="text-blue-400">users</span>.<span className="text-yellow-400">create</span>{'({\n'}
+                  {'  '}email: <span className="text-green-400">'user@example.com'</span>,{'\n'}
+                  {'  '}name: <span className="text-green-400">'John Doe'</span>{'\n'}
+                  {'});'}{'\n\n'}
+                  console.<span className="text-yellow-400">log</span>(response.<span className="text-blue-400">data</span>);{'\n'}
+                  <span className="text-gray-500">{'// {\n'}
+                  {'//   '}id: <span className="text-green-400">'usr_123abc'</span>,{'\n'}
+                  {'//   '}email: <span className="text-green-400">'user@example.com'</span>,{'\n'}
+                  {'//   '}name: <span className="text-green-400">'John Doe'</span>,{'\n'}
+                  {'//   '}created_at: <span className="text-green-400">'2024-01-01T00:00:00Z'</span>{'\n'}
+                  {'// }'}</span>
+                </code>
+              </pre>
             </div>
             
             <div className="mt-6">
