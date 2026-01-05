@@ -1,55 +1,166 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const PassportCTA: React.FC = () => {
   return (
-    <section className="bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 py-24 text-white">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="text-6xl mb-6">🎫</div>
-        <h2 className="text-5xl font-bold mb-6">
-          Get Your AeThex Passport
-        </h2>
-        <p className="text-xl text-slate-300 mb-10 leading-relaxed">
+    <section 
+      className="relative py-24 overflow-hidden"
+      style={{
+        background: 'linear-gradient(135deg, var(--bg-primary), var(--bg-secondary), var(--bg-tertiary))'
+      }}
+    >
+      {/* Animated cosmic background */}
+      <div className="absolute inset-0 opacity-30">
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: 'radial-gradient(circle at 20% 50%, var(--accent-purple), transparent 50%), radial-gradient(circle at 80% 50%, var(--accent-blue), transparent 50%)',
+            animation: 'pulse-glow 8s ease-in-out infinite'
+          }}
+        />
+      </div>
+
+      {/* Floating particles */}
+      <div className="absolute inset-0">
+        {[...Array(15)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 rounded-full"
+            style={{
+              background: i % 3 === 0 ? 'var(--accent-purple)' : i % 3 === 1 ? 'var(--accent-blue)' : 'var(--accent-teal)',
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [0, -30, 0],
+              opacity: [0.2, 0.8, 0.2],
+              scale: [1, 1.5, 1],
+            }}
+            transition={{
+              duration: 3 + Math.random() * 2,
+              repeat: Infinity,
+              delay: Math.random() * 2,
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <motion.div 
+            className="text-6xl mb-6"
+            animate={{
+              rotateY: [0, 360],
+            }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          >
+            🎫
+          </motion.div>
+        </motion.div>
+
+        <motion.h2 
+          className="text-5xl font-bold mb-6"
+          style={{ color: 'var(--text-primary)' }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+        >
+          Get Your{' '}
+          <span style={{ 
+            background: 'linear-gradient(135deg, var(--accent-purple), var(--accent-blue), var(--accent-teal))',
+            backgroundClip: 'text',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundSize: '200% 200%',
+            animation: 'gradient-shift 4s ease infinite'
+          }}>
+            AeThex Passport
+          </span>
+        </motion.h2>
+
+        <motion.p 
+          className="text-xl mb-10 leading-relaxed"
+          style={{ color: 'var(--text-secondary)' }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3 }}
+        >
           One account to rule them all. Create your Passport and start building 
           your cross-platform identity today.
-        </p>
+        </motion.p>
         
-        <div className="flex flex-col sm:flex-row justify-center gap-4 mb-12">
+        <motion.div 
+          className="flex flex-col sm:flex-row justify-center gap-4 mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4 }}
+        >
           <input
             type="email"
             placeholder="Enter your email"
-            className="px-6 py-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-white/50 backdrop-blur"
+            className="px-6 py-4 rounded-lg focus:outline-none focus:ring-2 backdrop-blur"
+            style={{
+              background: 'rgba(255, 255, 255, 0.05)',
+              border: '1px solid var(--glass-border)',
+              color: 'var(--text-primary)',
+            }}
           />
-          <button className="bg-white text-slate-900 px-8 py-4 rounded-lg hover:bg-slate-100 transition-all font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+          <Link
+            to="/passport"
+            className="btn-primary"
+          >
             Create Passport
-          </button>
-        </div>
+          </Link>
+        </motion.div>
         
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-sm text-slate-400">
-          <div className="flex items-center justify-center gap-2">
-            <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-            </svg>
-            Free forever
-          </div>
-          <div className="flex items-center justify-center gap-2">
-            <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-            </svg>
-            No credit card
-          </div>
-          <div className="flex items-center justify-center gap-2">
-            <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-            </svg>
-            Instant access
-          </div>
-          <div className="flex items-center justify-center gap-2">
-            <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-            </svg>
-            Own your data
-          </div>
-        </div>
+        <motion.div 
+          className="grid grid-cols-2 md:grid-cols-4 gap-6 text-sm"
+          style={{ color: 'var(--text-tertiary)' }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.5, staggerChildren: 0.1 }}
+        >
+          {[
+            { icon: '✓', text: 'Free forever' },
+            { icon: '✓', text: 'No credit card' },
+            { icon: '✓', text: 'Instant access' },
+            { icon: '✓', text: 'Own your data' }
+          ].map((item, i) => (
+            <motion.div
+              key={i}
+              className="flex items-center justify-center gap-2"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5 + i * 0.1 }}
+            >
+              <span 
+                className="w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold"
+                style={{
+                  background: 'var(--accent-teal)',
+                  color: 'var(--bg-primary)'
+                }}
+              >
+                {item.icon}
+              </span>
+              {item.text}
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );

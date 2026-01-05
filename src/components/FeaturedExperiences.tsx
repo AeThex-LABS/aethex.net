@@ -1,4 +1,6 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const FeaturedExperiences: React.FC = () => {
   const experiences = [
@@ -8,7 +10,8 @@ const FeaturedExperiences: React.FC = () => {
       image: '🎯',
       players: '45K',
       platform: 'Roblox',
-      status: 'Live'
+      status: 'Live',
+      color: 'var(--accent-blue)'
     },
     {
       title: 'Cosmic Traders',
@@ -16,7 +19,8 @@ const FeaturedExperiences: React.FC = () => {
       image: '🚀',
       players: '32K',
       platform: 'Unity',
-      status: 'Live'
+      status: 'Live',
+      color: 'var(--accent-purple)'
     },
     {
       title: 'The Foundation Arena',
@@ -24,7 +28,8 @@ const FeaturedExperiences: React.FC = () => {
       image: '⚔️',
       players: '28K',
       platform: 'Web',
-      status: 'Live'
+      status: 'Live',
+      color: 'var(--accent-pink)'
     },
     {
       title: 'Project Horizon',
@@ -32,68 +37,160 @@ const FeaturedExperiences: React.FC = () => {
       image: '🌅',
       players: 'TBA',
       platform: 'Multi',
-      status: 'Coming Soon'
+      status: 'Coming Soon',
+      color: 'var(--accent-teal)'
     },
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: [0.22, 1, 0.36, 1]
+      }
+    }
+  };
+
   return (
-    <section className="bg-slate-50 py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-5xl font-bold text-slate-900 mb-4">
+    <section className="relative py-24 overflow-hidden" style={{ backgroundColor: 'var(--bg-secondary)' }}>
+      {/* Subtle cosmic gradient overlay */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0" style={{
+          background: 'radial-gradient(circle at 50% 50%, var(--accent-purple), transparent 70%)'
+        }} />
+      </div>
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div 
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="text-5xl font-bold mb-4" style={{ 
+            background: 'linear-gradient(135deg, var(--accent-purple), var(--accent-blue), var(--accent-teal))',
+            backgroundClip: 'text',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundSize: '200% 200%',
+            animation: 'gradient-shift 8s ease infinite'
+          }}>
             Featured Experiences
           </h2>
-          <p className="text-xl text-slate-600">
+          <p className="text-xl" style={{ color: 'var(--text-secondary)' }}>
             Explore games built on the AeThex ecosystem
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <motion.div 
+          className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
           {experiences.map((exp) => (
-            <div
+            <motion.div
               key={exp.title}
-              className="group bg-white rounded-xl overflow-hidden border border-slate-200 hover:border-slate-300 hover:shadow-xl transition-all cursor-pointer"
+              variants={cardVariants}
+              whileHover={{ y: -8, scale: 1.02 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 20 }}
             >
-              {/* Image placeholder with emoji */}
-              <div className="aspect-video bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center text-6xl">
-                {exp.image}
-              </div>
-              
-              <div className="p-5">
-                <div className="flex items-center justify-between mb-2">
-                  <span className={`text-xs font-semibold px-2 py-1 rounded ${
-                    exp.status === 'Live' 
-                      ? 'bg-green-100 text-green-700' 
-                      : 'bg-blue-100 text-blue-700'
-                  }`}>
-                    {exp.status}
-                  </span>
-                  <span className="text-xs text-slate-500 font-mono">{exp.platform}</span>
+              <div className="glass-panel h-full overflow-hidden group cursor-pointer">
+                {/* Image placeholder with emoji and cosmic gradient */}
+                <div 
+                  className="aspect-video flex items-center justify-center text-6xl relative overflow-hidden"
+                  style={{
+                    background: `linear-gradient(135deg, ${exp.color}, var(--bg-tertiary))`
+                  }}
+                >
+                  <motion.div
+                    whileHover={{ scale: 1.2, rotate: 10 }}
+                    transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+                  >
+                    {exp.image}
+                  </motion.div>
+                  
+                  {/* Animated glow effect */}
+                  <div 
+                    className="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity duration-500"
+                    style={{
+                      background: `radial-gradient(circle at center, ${exp.color}, transparent 70%)`
+                    }}
+                  />
                 </div>
                 
-                <h3 className="text-lg font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">
-                  {exp.title}
-                </h3>
-                <p className="text-sm text-slate-600 mb-4 line-clamp-2">
-                  {exp.description}
-                </p>
-                
-                <div className="flex items-center text-sm text-slate-500">
-                  <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                  </svg>
-                  {exp.players} {exp.status === 'Live' ? 'playing' : ''}
+                <div className="p-5">
+                  <div className="flex items-center justify-between mb-3">
+                    <span 
+                      className="text-xs font-semibold px-2.5 py-1 rounded-full"
+                      style={{
+                        backgroundColor: exp.status === 'Live' ? 'rgba(34, 197, 94, 0.1)' : 'rgba(59, 130, 246, 0.1)',
+                        color: exp.status === 'Live' ? '#22c55e' : 'var(--accent-blue)',
+                        border: `1px solid ${exp.status === 'Live' ? 'rgba(34, 197, 94, 0.3)' : 'rgba(59, 130, 246, 0.3)'}`
+                      }}
+                    >
+                      {exp.status}
+                    </span>
+                    <span className="text-xs font-mono" style={{ color: 'var(--text-tertiary)' }}>
+                      {exp.platform}
+                    </span>
+                  </div>
+                  
+                  <h3 
+                    className="text-lg font-bold mb-2 transition-colors"
+                    style={{ 
+                      color: 'var(--text-primary)'
+                    }}
+                  >
+                    {exp.title}
+                  </h3>
+                  
+                  <p className="text-sm mb-4 line-clamp-2" style={{ color: 'var(--text-secondary)' }}>
+                    {exp.description}
+                  </p>
+                  
+                  <div className="flex items-center text-sm" style={{ color: 'var(--text-tertiary)' }}>
+                    <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                    <span style={{ color: exp.color }}>{exp.players}</span>
+                    {exp.status === 'Live' && <span className="ml-1">playing</span>}
+                  </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-        <div className="text-center mt-12">
-          <button className="bg-slate-900 text-white px-8 py-4 rounded-lg hover:bg-slate-800 transition-colors font-semibold">
+        <motion.div 
+          className="text-center mt-12"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3 }}
+        >
+          <Link
+            to="/games"
+            className="btn-primary inline-block"
+          >
             View All Experiences →
-          </button>
-        </div>
+          </Link>
+        </motion.div>
       </div>
     </section>
   );

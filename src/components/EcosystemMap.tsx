@@ -1,91 +1,308 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+
+interface Node {
+  id: string;
+  name: string;
+  icon: string;
+  description: string;
+  link: string;
+  position: string;
+  color: string;
+}
 
 const EcosystemMap: React.FC = () => {
-  const nodes = [
-    { name: 'Roblox Games', position: 'top-1/4 left-1/4', color: 'bg-blue-500' },
-    { name: 'Unity Games', position: 'top-1/4 right-1/4', color: 'bg-purple-500' },
-    { name: 'Web Apps', position: 'bottom-1/4 left-1/4', color: 'bg-green-500' },
-    { name: 'Mobile', position: 'bottom-1/4 right-1/4', color: 'bg-orange-500' },
+  const [hoveredNode, setHoveredNode] = useState<string | null>(null);
+
+  const nodes: Node[] = [
+    { 
+      id: 'games',
+      name: 'Games', 
+      icon: '🎮',
+      description: 'Play across connected experiences',
+      link: '/experiences',
+      position: 'top-1/4 left-1/4', 
+      color: '#3b82f6' 
+    },
+    { 
+      id: 'studio',
+      name: 'Creator Studio', 
+      icon: '🎨',
+      description: 'Build your own experiences',
+      link: 'https://aethex.studio',
+      position: 'top-1/4 right-1/4', 
+      color: '#eab308' 
+    },
+    { 
+      id: 'locker',
+      name: 'Universal Locker', 
+      icon: '🗃️',
+      description: 'Your items across all games',
+      link: 'https://aethex.locker',
+      position: 'bottom-1/4 left-1/4', 
+      color: '#14b8a6' 
+    },
+    { 
+      id: 'foundation',
+      name: 'Foundation', 
+      icon: '🏛️',
+      description: 'Community governance',
+      link: '/foundation',
+      position: 'bottom-1/4 right-1/4', 
+      color: '#ef4444' 
+    },
   ];
 
+  const isExternal = (link: string) => link.startsWith('http');
+
   return (
-    <section className="bg-slate-900 py-24 text-white relative overflow-hidden">
+    <section 
+      className="relative py-24 overflow-hidden"
+      style={{ backgroundColor: 'var(--bg-primary)' }}
+    >
       {/* Animated grid background */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0" style={{
-          backgroundImage: 'linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px)',
-          backgroundSize: '50px 50px'
-        }}></div>
+      <div className="absolute inset-0">
+        <div className="grid-background-animated absolute inset-0 opacity-15" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-5xl font-bold mb-4">
-            The Connected Ecosystem
+        {/* Header */}
+        <motion.div 
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <div 
+            className="inline-block px-4 py-2 rounded-full mb-4"
+            style={{
+              backgroundColor: 'var(--bg-secondary)',
+              border: '1px solid var(--border-primary)'
+            }}
+          >
+            <span 
+              className="text-sm font-mono uppercase tracking-wider"
+              style={{ color: 'var(--accent-purple)' }}
+            >
+              🗺️ Ecosystem Map
+            </span>
+          </div>
+          
+          <h2 
+            className="text-4xl sm:text-5xl font-bold mb-4"
+            style={{ color: 'var(--text-primary)' }}
+          >
+            Everything Connects
           </h2>
-          <p className="text-xl text-slate-400">
+          
+          <p 
+            className="text-xl max-w-2xl mx-auto"
+            style={{ color: 'var(--text-secondary)' }}
+          >
             Your identity and progress flow seamlessly across all platforms
           </p>
-        </div>
+        </motion.div>
 
         {/* Interactive Map Visualization */}
-        <div className="relative aspect-video bg-slate-800/50 rounded-2xl border border-slate-700 overflow-hidden backdrop-blur">
+        <motion.div 
+          className="relative aspect-video rounded-2xl overflow-hidden"
+          style={{
+            backgroundColor: 'var(--bg-secondary)',
+            border: '1px solid var(--border-primary)'
+          }}
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
           {/* Center node - AeThex Passport */}
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-            <div className="relative">
-              <div className="w-32 h-32 bg-gradient-to-br from-white to-slate-300 rounded-full flex items-center justify-center shadow-2xl animate-pulse">
-                <div className="text-center">
-                  <div className="text-3xl mb-1">🎫</div>
-                  <div className="text-xs font-bold text-slate-900">AeThex<br/>Passport</div>
+          <motion.div 
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10"
+            initial={{ scale: 0 }}
+            whileInView={{ scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <Link to="/passport" style={{ textDecoration: 'none' }}>
+              <motion.div 
+                className="relative cursor-pointer"
+                whileHover={{ scale: 1.1 }}
+                onMouseEnter={() => setHoveredNode('passport')}
+                onMouseLeave={() => setHoveredNode(null)}
+              >
+                <div 
+                  className="w-32 h-32 rounded-full flex items-center justify-center shadow-2xl"
+                  style={{
+                    background: 'linear-gradient(135deg, #8b5cf6, #3b82f6)',
+                    boxShadow: hoveredNode === 'passport' ? '0 0 40px rgba(139, 92, 246, 0.6)' : '0 0 20px rgba(139, 92, 246, 0.3)'
+                  }}
+                >
+                  <div className="text-center">
+                    <div className="text-3xl mb-1">🌐</div>
+                    <div className="text-xs font-bold text-white">AeThex<br/>Passport</div>
+                  </div>
                 </div>
-              </div>
-              {/* Pulsing rings */}
-              <div className="absolute inset-0 rounded-full border-2 border-white/20 animate-ping"></div>
-            </div>
-          </div>
+                {/* Pulsing rings */}
+                <motion.div 
+                  className="absolute inset-0 rounded-full"
+                  style={{ border: '2px solid rgba(139, 92, 246, 0.3)' }}
+                  animate={{ scale: [1, 1.5], opacity: [0.5, 0] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                />
+              </motion.div>
+            </Link>
+          </motion.div>
 
           {/* Connected nodes */}
-          {nodes.map((node, i) => (
-            <div key={i} className={`absolute ${node.position} transform -translate-x-1/2 -translate-y-1/2`}>
-              <div className="relative">
-                <div className={`w-20 h-20 ${node.color} rounded-full flex items-center justify-center shadow-lg opacity-80 hover:opacity-100 transition-opacity cursor-pointer`}>
-                  <span className="text-xs font-semibold text-white text-center px-2">{node.name}</span>
-                </div>
-                {/* Connection line to center */}
-                <svg className="absolute top-1/2 left-1/2 w-screen h-screen pointer-events-none" style={{ transform: 'translate(-50%, -50%)' }}>
-                  <line x1="50%" y1="50%" x2="50%" y2="50%" stroke="rgba(255,255,255,0.1)" strokeWidth="2" strokeDasharray="5,5">
-                    <animate attributeName="stroke-dashoffset" from="0" to="10" dur="1s" repeatCount="indefinite" />
-                  </line>
-                </svg>
-              </div>
-            </div>
-          ))}
-        </div>
+          {nodes.map((node, i) => {
+            const isHovered = hoveredNode === node.id || hoveredNode === 'passport';
+            const NodeContent = (
+              <motion.div
+                key={node.id}
+                className={`absolute ${node.position} transform -translate-x-1/2 -translate-y-1/2`}
+                initial={{ scale: 0, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.5 + i * 0.1 }}
+                onMouseEnter={() => setHoveredNode(node.id)}
+                onMouseLeave={() => setHoveredNode(null)}
+              >
+                <motion.div
+                  className="relative cursor-pointer"
+                  whileHover={{ scale: 1.1, y: -5 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <div 
+                    className="w-20 h-20 rounded-full flex items-center justify-center shadow-lg"
+                    style={{
+                      backgroundColor: node.color,
+                      boxShadow: isHovered ? `0 0 30px ${node.color}80` : `0 0 15px ${node.color}40`,
+                      opacity: isHovered ? 1 : 0.8
+                    }}
+                  >
+                    <span className="text-2xl">{node.icon}</span>
+                  </div>
+                  
+                  {/* Label */}
+                  <div 
+                    className="absolute top-full mt-2 left-1/2 transform -translate-x-1/2 whitespace-nowrap text-xs font-semibold text-center"
+                    style={{ 
+                      color: isHovered ? 'var(--text-primary)' : 'var(--text-secondary)',
+                      opacity: isHovered ? 1 : 0.7
+                    }}
+                  >
+                    {node.name}
+                  </div>
+
+                  {/* Description on hover */}
+                  {isHovered && (
+                    <motion.div
+                      className="absolute top-full mt-8 left-1/2 transform -translate-x-1/2 px-3 py-2 rounded-lg whitespace-nowrap text-xs"
+                      style={{
+                        backgroundColor: 'var(--bg-elevated)',
+                        border: '1px solid var(--border-primary)',
+                        color: 'var(--text-secondary)',
+                        boxShadow: 'var(--shadow-lg)'
+                      }}
+                      initial={{ opacity: 0, y: -5 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      {node.description}
+                    </motion.div>
+                  )}
+
+                  {/* Connection line */}
+                  <svg 
+                    className="absolute inset-0 w-full h-full pointer-events-none"
+                    style={{ 
+                      transform: 'scale(3)', 
+                      transformOrigin: 'center',
+                      opacity: isHovered ? 0.6 : 0.3 
+                    }}
+                  >
+                    <motion.line 
+                      x1="50%" 
+                      y1="50%" 
+                      x2="50%" 
+                      y2="50%" 
+                      stroke={node.color}
+                      strokeWidth={isHovered ? "3" : "2"}
+                      strokeDasharray="5,5"
+                      animate={{
+                        strokeDashoffset: [0, -10]
+                      }}
+                      transition={{
+                        duration: 1,
+                        repeat: Infinity,
+                        ease: "linear"
+                      }}
+                    />
+                  </svg>
+                </motion.div>
+              </motion.div>
+            );
+
+            return isExternal(node.link) ? (
+              <a 
+                key={node.id}
+                href={node.link} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                style={{ textDecoration: 'none' }}
+              >
+                {NodeContent}
+              </a>
+            ) : (
+              <Link 
+                key={node.id}
+                to={node.link}
+                style={{ textDecoration: 'none' }}
+              >
+                {NodeContent}
+              </Link>
+            );
+          })}
+        </motion.div>
+
 
         {/* Key Features */}
-        <div className="grid md:grid-cols-3 gap-8 mt-16">
-          <div className="text-center">
-            <div className="text-4xl mb-3">🔐</div>
-            <h3 className="text-lg font-semibold mb-2">One Identity</h3>
-            <p className="text-sm text-slate-400">
-              Single account works everywhere in the ecosystem
-            </p>
-          </div>
-          <div className="text-center">
-            <div className="text-4xl mb-3">📊</div>
-            <h3 className="text-lg font-semibold mb-2">Persistent Progress</h3>
-            <p className="text-sm text-slate-400">
-              Achievements, inventory, and stats follow you
-            </p>
-          </div>
-          <div className="text-center">
-            <div className="text-4xl mb-3">⚡</div>
-            <h3 className="text-lg font-semibold mb-2">Real-Time Sync</h3>
-            <p className="text-sm text-slate-400">
-              Changes in one game instantly reflect everywhere
-            </p>
-          </div>
-        </div>
+        <motion.div 
+          className="grid md:grid-cols-3 gap-8 mt-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+        >
+          {[
+            { icon: '🔐', title: 'One Identity', description: 'Single account works everywhere in the ecosystem' },
+            { icon: '📊', title: 'Persistent Progress', description: 'Achievements, inventory, and stats follow you' },
+            { icon: '⚡', title: 'Real-Time Sync', description: 'Changes in one game instantly reflect everywhere' }
+          ].map((feature, index) => (
+            <motion.div
+              key={index}
+              className="text-center card"
+              whileHover={{ y: -5 }}
+              transition={{ duration: 0.2 }}
+            >
+              <div className="text-4xl mb-3">{feature.icon}</div>
+              <h3 
+                className="text-lg font-semibold mb-2"
+                style={{ color: 'var(--text-primary)' }}
+              >
+                {feature.title}
+              </h3>
+              <p 
+                className="text-sm"
+                style={{ color: 'var(--text-secondary)' }}
+              >
+                {feature.description}
+              </p>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );

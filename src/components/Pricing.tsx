@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 interface PricingTier {
   name: string;
@@ -7,6 +7,7 @@ interface PricingTier {
   features: string[];
   cta: string;
   popular?: boolean;
+  icon: string;
 }
 
 const pricingTiers: PricingTier[] = [
@@ -23,6 +24,7 @@ const pricingTiers: PricingTier[] = [
       'Rate limit: 100 req/min',
     ],
     cta: 'Get Started Free',
+    icon: '🚀'
   },
   {
     name: 'Pro',
@@ -40,6 +42,7 @@ const pricingTiers: PricingTier[] = [
     ],
     cta: 'Start 14-Day Trial',
     popular: true,
+    icon: '⭐'
   },
   {
     name: 'Enterprise',
@@ -58,80 +61,189 @@ const pricingTiers: PricingTier[] = [
       'Custom contract terms',
     ],
     cta: 'Contact Sales',
+    icon: '🏢'
   },
 ];
 
 const Pricing: React.FC = () => {
+  const [hoveredTier, setHoveredTier] = useState<string | null>(null);
+
   return (
-    <section className="bg-gray-50 py-20" id="pricing">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Transparent Pricing
+    <section style={{
+      backgroundColor: 'var(--bg-primary)',
+      color: 'var(--text-primary)',
+      padding: '6rem 1.5rem',
+      position: 'relative',
+      overflow: 'hidden'
+    }} id="pricing">
+      {/* Grid Background */}
+      <div className="grid-background-animated" style={{
+        position: 'absolute',
+        inset: 0,
+        opacity: 0.2
+      }} />
+
+      <div style={{ maxWidth: '1400px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
+        <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+          <div style={{
+            display: 'inline-block',
+            padding: '0.5rem 1rem',
+            borderRadius: '9999px',
+            backgroundColor: 'var(--bg-secondary)',
+            border: '1px solid var(--border-primary)',
+            fontSize: '0.875rem',
+            fontWeight: '600',
+            marginBottom: '1rem',
+            color: 'var(--color-gameforge-green)'
+          }}>
+            💎 Transparent Pricing
+          </div>
+          
+          <h2 style={{
+            fontSize: '3rem',
+            fontWeight: 'bold',
+            marginBottom: '1rem',
+            background: 'linear-gradient(to right, var(--text-primary), var(--color-gameforge-green))',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text'
+          }}>
+            Scale with Predictable Costs
           </h2>
-          <p className="text-xl text-gray-600">
-            Scale with predictable costs. No hidden fees.
+          
+          <p style={{
+            fontSize: '1.25rem',
+            color: 'var(--text-secondary)',
+            maxWidth: '600px',
+            margin: '0 auto'
+          }}>
+            No hidden fees. Cancel anytime.
           </p>
         </div>
         
-        <div className="grid md:grid-cols-3 gap-8">
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+          gap: '2rem',
+          marginTop: '3rem'
+        }}>
           {pricingTiers.map((tier) => (
             <div
               key={tier.name}
-              className={`bg-white rounded-lg border ${
-                tier.popular
-                  ? 'border-gray-900 ring-2 ring-gray-900'
-                  : 'border-gray-200'
-              } p-8 relative`}
+              className="card hover-lift glow-border"
+              onMouseEnter={() => setHoveredTier(tier.name)}
+              onMouseLeave={() => setHoveredTier(null)}
+              style={{
+                padding: '2rem',
+                border: tier.popular
+                  ? '2px solid var(--color-gameforge-green)'
+                  : '1px solid var(--border-primary)',
+                position: 'relative',
+                transition: 'all 0.3s ease'
+              }}
             >
               {tier.popular && (
-                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                  <span className="bg-gray-900 text-white px-3 py-1 rounded text-xs font-medium font-mono">
-                    MOST POPULAR
-                  </span>
+                <div style={{
+                  position: 'absolute',
+                  top: '-12px',
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  padding: '0.5rem 1rem',
+                  borderRadius: '9999px',
+                  backgroundColor: 'var(--color-gameforge-green)',
+                  color: '#000',
+                  fontSize: '0.75rem',
+                  fontWeight: 'bold',
+                  boxShadow: '0 4px 12px rgba(34, 197, 94, 0.4)'
+                }}>
+                  MOST POPULAR
                 </div>
               )}
               
-              <div className="mb-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">
+              <div style={{ marginBottom: '2rem' }}>
+                <div style={{
+                  fontSize: '3rem',
+                  marginBottom: '1rem'
+                }}>
+                  {tier.icon}
+                </div>
+                
+                <h3 style={{
+                  fontSize: '1.5rem',
+                  fontWeight: 'bold',
+                  color: hoveredTier === tier.name ? 'var(--color-gameforge-green)' : 'var(--text-primary)',
+                  marginBottom: '0.5rem',
+                  transition: 'color 0.3s ease'
+                }}>
                   {tier.name}
                 </h3>
-                <div className="flex items-baseline mb-4">
-                  <span className="text-5xl font-bold text-gray-900">
+                
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'baseline',
+                  marginBottom: '1rem'
+                }}>
+                  <span style={{
+                    fontSize: '3rem',
+                    fontWeight: 'bold',
+                    color: 'var(--text-primary)'
+                  }}>
                     {tier.price}
                   </span>
                   {tier.price !== 'Custom' && (
-                    <span className="text-gray-600 ml-2">/month</span>
+                    <span style={{
+                      color: 'var(--text-secondary)',
+                      marginLeft: '0.5rem'
+                    }}>
+                      /month
+                    </span>
                   )}
                 </div>
-                <p className="text-gray-600 text-sm">{tier.description}</p>
+                
+                <p style={{
+                  color: 'var(--text-secondary)',
+                  fontSize: '0.875rem'
+                }}>
+                  {tier.description}
+                </p>
               </div>
               
-              <ul className="space-y-3 mb-8">
-                {tier.features.map((feature) => (
-                  <li key={feature} className="flex items-start text-sm">
-                    <svg
-                      className="w-5 h-5 text-gray-900 mr-3 mt-0.5 flex-shrink-0"
-                      fill="none"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path d="M5 13l4 4L19 7"></path>
-                    </svg>
-                    <span className="text-gray-600">{feature}</span>
+              <ul style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '0.75rem',
+                marginBottom: '2rem',
+                listStyle: 'none',
+                padding: 0
+              }}>
+                {tier.features.map((feature, index) => (
+                  <li key={index} style={{
+                    display: 'flex',
+                    alignItems: 'flex-start',
+                    fontSize: '0.875rem',
+                    color: 'var(--text-secondary)'
+                  }}>
+                    <span style={{
+                      color: tier.popular ? 'var(--color-gameforge-green)' : 'var(--accent-primary)',
+                      marginRight: '0.75rem',
+                      fontSize: '1.25rem',
+                      lineHeight: '1'
+                    }}>
+                      ✓
+                    </span>
+                    <span>{feature}</span>
                   </li>
                 ))}
               </ul>
               
               <button
-                className={`w-full py-3 px-6 rounded-md font-medium transition-colors ${
-                  tier.popular
-                    ? 'bg-gray-900 text-white hover:bg-gray-800'
-                    : 'bg-white text-gray-900 border border-gray-300 hover:bg-gray-50'
-                }`}
+                className={tier.popular ? 'btn-primary' : 'btn-secondary'}
+                style={{
+                  width: '100%',
+                  padding: '1rem',
+                  fontSize: '1rem',
+                  fontWeight: '600'
+                }}
               >
                 {tier.cta}
               </button>
@@ -139,11 +251,30 @@ const Pricing: React.FC = () => {
           ))}
         </div>
 
-        <div className="mt-16 text-center">
-          <p className="text-gray-600 text-sm mb-4">
+        <div style={{
+          marginTop: '4rem',
+          textAlign: 'center',
+          padding: '2rem',
+          borderRadius: '1rem',
+          backgroundColor: 'var(--bg-secondary)',
+          border: '1px solid var(--border-primary)'
+        }}>
+          <p style={{
+            color: 'var(--text-secondary)',
+            fontSize: '0.875rem',
+            marginBottom: '1rem'
+          }}>
             All plans include: Cross-platform APIs • Unified player identity • Real-time sync • Analytics dashboard
           </p>
-          <a href="#" className="text-gray-900 font-medium hover:underline text-sm">
+          <a 
+            href="#" 
+            style={{
+              color: 'var(--accent-primary)',
+              fontWeight: '600',
+              fontSize: '0.875rem',
+              textDecoration: 'none'
+            }}
+          >
             Compare all features →
           </a>
         </div>
