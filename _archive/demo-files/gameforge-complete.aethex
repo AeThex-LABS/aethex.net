@@ -1,0 +1,36 @@
+# AeThex GameForge Example
+# Comprehensive example showing all major features
+
+reality GameForge {
+    type: "developer_education"
+    platforms: [roblox, uefn, web]
+}
+
+passport developer {
+    username: "NewDev"
+    level: 1
+    projects_completed: 0
+}
+
+journey WelcomeDeveloper(dev) {
+    platform: all
+    
+    notify "Welcome to GameForge!"
+    reveal dev.username
+    
+    when dev.level == 1 {
+        notify "Starting your developer journey"
+    }
+}
+
+journey CreateProject(dev, project_name) {
+    platform: all
+    
+    sync dev.projects across [roblox, uefn, web]
+    notify "Creating your first project"
+    reveal project_name
+}
+
+signal projects_completed > 5 {
+    broadcast "Developer milestone reached!"
+}

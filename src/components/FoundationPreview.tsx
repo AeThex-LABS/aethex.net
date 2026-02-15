@@ -4,16 +4,19 @@ import { motion } from 'framer-motion';
 const FoundationPreview: React.FC = () => {
   return (
     <section 
-      className="relative py-24 overflow-hidden"
-      style={{ backgroundColor: 'var(--bg-primary)' }}
+      className="relative pb-24 overflow-hidden"
+      style={{ backgroundColor: '#000000', paddingTop: '80px' }}
     >
       {/* Background effects */}
       <div className="absolute inset-0">
-        <div className="grid-background absolute inset-0 opacity-10" />
+        <div className="absolute inset-0 opacity-10" style={{
+          backgroundImage: 'linear-gradient(#ff00ff 1px, transparent 1px), linear-gradient(90deg, #ff00ff 1px, transparent 1px)',
+          backgroundSize: '50px 50px'
+        }} />
         <div 
           className="absolute inset-0"
           style={{
-            background: 'radial-gradient(circle at 20% 50%, rgba(239, 68, 68, 0.1) 0%, transparent 50%)'
+            background: 'radial-gradient(circle at 20% 50%, rgba(255, 0, 255, 0.1) 0%, transparent 50%)'
           }}
         />
       </div>
@@ -28,11 +31,15 @@ const FoundationPreview: React.FC = () => {
           >
             <div className="inline-block mb-4">
               <span 
-                className="text-xs font-mono px-3 py-1.5 rounded-full"
+                className="text-xs font-mono px-3 py-1.5 uppercase"
                 style={{
-                  backgroundColor: 'var(--bg-secondary)',
-                  border: '1px solid var(--border-primary)',
-                  color: 'var(--color-foundation-red)'
+                  backgroundColor: 'rgba(255, 0, 255, 0.05)',
+                  border: '1px solid #ff00ff',
+                  color: '#ff00ff',
+                  fontFamily: 'Source Code Pro, monospace',
+                  letterSpacing: '0.15em',
+                  boxShadow: '0 0 15px rgba(255, 0, 255, 0.3)',
+                  clipPath: 'polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 4px 100%, 0 calc(100% - 4px))'
                 }}
               >
                 🏛️ THE FOUNDATION
@@ -41,12 +48,16 @@ const FoundationPreview: React.FC = () => {
             
             <h2 
               className="text-4xl sm:text-5xl font-bold mb-6"
-              style={{ color: 'var(--text-primary)' }}
+              style={{ 
+                color: '#ffffff',
+                fontFamily: 'Electrolize, sans-serif',
+                letterSpacing: '0.1em'
+              }}
             >
               Built by the Community,<br />
               <span 
                 style={{
-                  background: 'linear-gradient(135deg, #ef4444, #8b5cf6)',
+                  background: 'linear-gradient(135deg, #ff00ff, #00ffff)',
                   backgroundClip: 'text',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent'
@@ -58,7 +69,10 @@ const FoundationPreview: React.FC = () => {
             
             <p 
               className="text-lg mb-6 leading-relaxed"
-              style={{ color: 'var(--text-secondary)' }}
+              style={{ 
+                color: '#a0a0a0',
+                fontFamily: 'Source Code Pro, monospace'
+              }}
             >
               AeThex is governed by those who use it. The Foundation gives 
               players, creators, and developers a voice in shaping the future 
@@ -75,15 +89,18 @@ const FoundationPreview: React.FC = () => {
                 <motion.li 
                   key={item}
                   className="flex items-start"
-                  style={{ color: 'var(--text-secondary)' }}
+                  style={{ 
+                    color: '#a0a0a0',
+                    fontFamily: 'Source Code Pro, monospace'
+                  }}
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.1 }}
                 >
                   <svg 
-                    className="w-5 h-5 mr-3 mt-0.5 flex-shrink-0" 
-                    style={{ color: 'var(--color-foundation-red)' }}
+                    className="w-5 h-5 mr-3 mt-0.5 shrink-0" 
+                    style={{ color: '#ff00ff' }}
                     fill="none" 
                     stroke="currentColor" 
                     viewBox="0 0 24 24"
@@ -99,8 +116,12 @@ const FoundationPreview: React.FC = () => {
               href="https://aethex.foundation"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-primary inline-flex items-center gap-2"
-              style={{ textDecoration: 'none' }}
+              className="btn-secondary inline-flex items-center gap-2 px-6 py-3 text-xs font-bold uppercase"
+              style={{
+                fontFamily: 'Source Code Pro, monospace',
+                letterSpacing: '0.15em',
+                textDecoration: 'none'
+              }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -119,31 +140,39 @@ const FoundationPreview: React.FC = () => {
             transition={{ duration: 0.6 }}
           >
             <div 
-              className="glass-panel p-8 rounded-2xl"
+              className="p-8"
               style={{
-                background: 'linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary))',
-                border: '1px solid var(--border-glow)'
+                background: 'rgba(255, 0, 255, 0.02)',
+                border: '1px solid rgba(255, 0, 255, 0.3)',
+                backdropFilter: 'blur(40px)',
+                clipPath: 'polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px))',
+                boxShadow: 'inset 0 0 40px rgba(255, 0, 255, 0.05)'
               }}
             >
               <h3 
-                className="text-2xl font-bold mb-6"
-                style={{ color: 'var(--text-primary)' }}
+                className="text-2xl font-bold mb-6 uppercase"
+                style={{ 
+                  color: '#ffffff',
+                  fontFamily: 'Electrolize, sans-serif',
+                  letterSpacing: '0.1em'
+                }}
               >
                 Active Proposals
               </h3>
               
               <div className="space-y-4">
                 {[
-                  { title: 'Cross-game achievement system', votes: 89, status: 'Active', color: '#3b82f6' },
-                  { title: 'New creator revenue model', votes: 76, status: 'Active', color: '#8b5cf6' },
-                  { title: 'Mobile app development', votes: 92, status: 'Passed', color: '#22c55e' }
+                  { title: 'Cross-game achievement system', votes: 89, status: 'Active', color: '#00ffff' },
+                  { title: 'New creator revenue model', votes: 76, status: 'Active', color: '#ff00ff' },
+                  { title: 'Mobile app development', votes: 92, status: 'Passed', color: '#00ff00' }
                 ].map((proposal, index) => (
                   <motion.div 
                     key={proposal.title}
-                    className="card"
+                    className="p-4"
                     style={{
-                      backgroundColor: 'var(--bg-elevated)',
-                      padding: '1rem'
+                      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                      border: '1px solid rgba(255, 0, 255, 0.2)',
+                      clipPath: 'polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px))'
                     }}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -153,17 +182,22 @@ const FoundationPreview: React.FC = () => {
                   >
                     <div className="flex justify-between items-start mb-2">
                       <h4 
-                        className="font-semibold text-sm"
-                        style={{ color: 'var(--text-primary)' }}
+                        className="font-bold text-sm"
+                        style={{ 
+                          color: '#ffffff',
+                          fontFamily: 'Source Code Pro, monospace'
+                        }}
                       >
                         {proposal.title}
                       </h4>
                       <span 
-                        className="text-xs px-2 py-1 rounded font-mono"
+                        className="text-xs px-2 py-1 font-mono uppercase"
                         style={{
                           backgroundColor: `${proposal.color}20`,
                           color: proposal.color,
-                          border: `1px solid ${proposal.color}40`
+                          border: `1px solid ${proposal.color}`,
+                          boxShadow: `0 0 10px ${proposal.color}40`,
+                          letterSpacing: '0.1em'
                         }}
                       >
                         {proposal.status}
@@ -173,7 +207,7 @@ const FoundationPreview: React.FC = () => {
                     <div className="flex items-center gap-2">
                       <div 
                         className="flex-1 rounded-full h-2 overflow-hidden"
-                        style={{ backgroundColor: 'var(--bg-tertiary)' }}
+                        style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)' }}
                       >
                         <motion.div 
                           className="h-full rounded-full"
@@ -189,7 +223,10 @@ const FoundationPreview: React.FC = () => {
                       </div>
                       <span 
                         className="text-xs font-mono"
-                        style={{ color: 'var(--text-secondary)' }}
+                        style={{ 
+                          color: '#a0a0a0',
+                          fontFamily: 'Source Code Pro, monospace'
+                        }}
                       >
                         {proposal.votes}%
                       </span>
@@ -201,7 +238,7 @@ const FoundationPreview: React.FC = () => {
               {/* Stats */}
               <motion.div 
                 className="grid grid-cols-2 gap-4 mt-6 pt-6"
-                style={{ borderTop: '1px solid var(--border-primary)' }}
+                style={{ borderTop: '1px solid rgba(255, 0, 255, 0.3)' }}
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
@@ -210,13 +247,21 @@ const FoundationPreview: React.FC = () => {
                 <div className="text-center">
                   <div 
                     className="text-2xl font-bold font-mono mb-1"
-                    style={{ color: 'var(--color-foundation-red)' }}
+                    style={{ 
+                      color: '#ff00ff',
+                      textShadow: '0 0 20px #ff00ff',
+                      fontFamily: 'Source Code Pro, monospace'
+                    }}
                   >
                     18
                   </div>
                   <div 
                     className="text-xs uppercase tracking-wider"
-                    style={{ color: 'var(--text-tertiary)' }}
+                    style={{ 
+                      color: '#808080',
+                      fontFamily: 'Source Code Pro, monospace',
+                      letterSpacing: '0.15em'
+                    }}
                   >
                     Active Proposals
                   </div>
@@ -224,13 +269,21 @@ const FoundationPreview: React.FC = () => {
                 <div className="text-center">
                   <div 
                     className="text-2xl font-bold font-mono mb-1"
-                    style={{ color: 'var(--color-foundation-red)' }}
+                    style={{ 
+                      color: '#ff00ff',
+                      textShadow: '0 0 20px #ff00ff',
+                      fontFamily: 'Source Code Pro, monospace'
+                    }}
                   >
                     12.5K
                   </div>
                   <div 
                     className="text-xs uppercase tracking-wider"
-                    style={{ color: 'var(--text-tertiary)' }}
+                    style={{ 
+                      color: '#808080',
+                      fontFamily: 'Source Code Pro, monospace',
+                      letterSpacing: '0.15em'
+                    }}
                   >
                     Members
                   </div>

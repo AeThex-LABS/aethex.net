@@ -1,98 +1,157 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import FeaturedExperiences from '../components/FeaturedExperiences';
 
 const Experiences: React.FC = () => {
-  const experiences = [
-    {
-      title: 'Hide and Seek Extreme',
-      description: 'The classic game reimagined with persistent abilities and cross-platform play. Use your AeThex Passport to unlock unique seeker and hider classes.',
-      image: '🎯',
-      players: '45,283',
-      platform: 'Roblox',
-      status: 'Live',
-      rating: 4.8,
-      category: 'Action'
-    },
-    {
-      title: 'Cosmic Traders',
-      description: 'Build your trading empire across the universe. Real-time economy where your trades impact prices across all platforms.',
-      image: '🚀',
-      players: '32,156',
-      platform: 'Unity',
-      status: 'Live',
-      rating: 4.6,
-      category: 'Strategy'
-    },
-    {
-      title: 'The Foundation Arena',
-      description: 'Competitive battles where victories earn governance power. Fight to shape the future of AeThex.',
-      image: '⚔️',
-      players: '28,904',
-      platform: 'Web',
-      status: 'Live',
-      rating: 4.7,
-      category: 'PvP'
-    },
-    {
-      title: 'Project Horizon',
-      description: 'Open-world exploration with persistent discovery achievements. Uncover secrets across interconnected maps.',
-      image: '🌅',
-      players: 'Coming Soon',
-      platform: 'Multi-Platform',
-      status: 'Beta',
-      rating: null,
-      category: 'Adventure'
-    },
+  const allExperiences = [
     {
       title: 'Puzzle Nexus',
       description: 'Collaborative puzzle solving across platforms. Solutions discovered in one game unlock content in others.',
       image: '🧩',
-      players: '19,432',
+      players: '19K',
       platform: 'Web',
       status: 'Live',
-      rating: 4.9,
-      category: 'Puzzle'
+      color: '#00ffff'
     },
     {
       title: 'Rhythm Realms',
       description: 'Music-based gameplay where your rhythm skills translate to universal scores and achievements.',
       image: '🎵',
-      players: '15,678',
+      players: '15K',
       platform: 'Mobile',
       status: 'Live',
-      rating: 4.5,
-      category: 'Music'
+      color: '#ff00ff'
+    },
+    {
+      title: 'Neural Network',
+      description: 'Hack your way through cyberspace. Your hacking skills persist across all network experiences.',
+      image: '🔐',
+      players: '22K',
+      platform: 'PC',
+      status: 'Live',
+      color: '#00ff00'
+    },
+    {
+      title: 'Void Runners',
+      description: 'Parkour through neon cityscapes. Your best times and unlocked routes sync everywhere.',
+      image: '🏃',
+      players: '31K',
+      platform: 'Multi',
+      status: 'Live',
+      color: '#00ffff'
+    },
+    {
+      title: 'Data Breach',
+      description: 'Competitive hacking tournaments where victories earn governance tokens and platform influence.',
+      image: '💻',
+      players: 'TBA',
+      platform: 'Web',
+      status: 'Coming Soon',
+      color: '#ff00ff'
+    },
+    {
+      title: 'Neon Racers',
+      description: 'High-speed racing through cyberpunk streets. Your garage and upgrades follow you across platforms.',
+      image: '🏎️',
+      players: '27K',
+      platform: 'Multi',
+      status: 'Live',
+      color: '#00ff00'
     },
   ];
 
   const categories = ['All', 'Action', 'Strategy', 'PvP', 'Adventure', 'Puzzle', 'Music'];
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div style={{ backgroundColor: '#000000', minHeight: '100vh' }}>
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-6xl font-bold mb-6">
-            Explore Experiences
-          </h1>
-          <p className="text-xl text-slate-300 mb-8 max-w-3xl mx-auto">
+      <section className="relative pb-20 overflow-hidden" style={{ backgroundColor: '#000000', paddingTop: '80px' }}>
+        {/* Grid background */}
+        <div className="absolute inset-0 opacity-15">
+          <div style={{
+            backgroundImage: 'linear-gradient(#00ffff 1px, transparent 1px), linear-gradient(90deg, #00ffff 1px, transparent 1px)',
+            backgroundSize: '50px 50px',
+            height: '100%'
+          }} />
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.h1 
+            className="text-6xl font-bold mb-6"
+            style={{
+              background: 'linear-gradient(135deg, #00ffff, #ff00ff, #00ff00)',
+              backgroundClip: 'text',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              fontFamily: 'Electrolize, sans-serif',
+              letterSpacing: '0.1em'
+            }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            EXPLORE EXPERIENCES
+          </motion.h1>
+          <motion.p 
+            className="text-xl mb-8 max-w-3xl mx-auto"
+            style={{ 
+              color: '#a0a0a0',
+              fontFamily: 'Source Code Pro, monospace'
+            }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             Discover games and apps built on AeThex. Your progress and identity persist across everything.
-          </p>
-          <div className="flex justify-center gap-4">
-            <button className="bg-white text-slate-900 px-6 py-3 rounded-lg hover:bg-slate-100 transition-all font-semibold">
+          </motion.p>
+          <motion.div 
+            className="flex justify-center gap-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <button 
+              className="px-6 py-3 text-xs font-bold uppercase"
+              style={{
+                background: 'linear-gradient(135deg, #00ffff, #ff00ff)',
+                color: '#000000',
+                fontFamily: 'Source Code Pro, monospace',
+                letterSpacing: '0.15em',
+                clipPath: 'polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))',
+                border: '1px solid #00ffff',
+                boxShadow: '0 0 30px rgba(0, 255, 255, 0.6), inset 0 0 20px rgba(255, 255, 255, 0.2)',
+                textShadow: '0 0 10px rgba(0, 0, 0, 0.5)'
+              }}
+            >
               Get Passport to Play
             </button>
-          </div>
+          </motion.div>
         </div>
       </section>
 
+      {/* Featured Experiences */}
+      <FeaturedExperiences />
+
       {/* Filters */}
-      <section className="bg-white border-b border-slate-200 sticky top-16 z-40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <section className="relative py-6 border-b" style={{ 
+        backgroundColor: 'rgba(0, 0, 0, 0.5)', 
+        borderColor: 'rgba(0, 255, 255, 0.3)',
+        backdropFilter: 'blur(40px)'
+      }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex gap-2 overflow-x-auto">
             {categories.map((cat) => (
               <button
                 key={cat}
-                className="px-4 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 transition-colors text-sm font-medium whitespace-nowrap"
+                className="px-4 py-2 text-xs font-bold uppercase whitespace-nowrap"
+                style={{
+                  background: 'rgba(0, 255, 255, 0.05)',
+                  border: '1px solid rgba(0, 255, 255, 0.3)',
+                  color: '#00ffff',
+                  fontFamily: 'Source Code Pro, monospace',
+                  letterSpacing: '0.1em',
+                  clipPath: 'polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 4px 100%, 0 calc(100% - 4px))'
+                }}
               >
                 {cat}
               </button>
@@ -101,54 +160,107 @@ const Experiences: React.FC = () => {
         </div>
       </section>
 
-      {/* Experiences Grid */}
-      <section className="py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* All Experiences Grid */}
+      <section className="relative py-12">
+        {/* Grid background */}
+        <div className="absolute inset-0 opacity-10">
+          <div style={{
+            backgroundImage: 'linear-gradient(#00ffff 1px, transparent 1px), linear-gradient(90deg, #00ffff 1px, transparent 1px)',
+            backgroundSize: '50px 50px',
+            height: '100%'
+          }} />
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 
+            className="text-3xl font-bold mb-8"
+            style={{
+              color: '#ffffff',
+              fontFamily: 'Electrolize, sans-serif',
+              letterSpacing: '0.1em'
+            }}
+          >
+            MORE EXPERIENCES
+          </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {experiences.map((exp) => (
-              <div
+            {allExperiences.map((exp, index) => (
+              <motion.div
                 key={exp.title}
-                className="group bg-white rounded-xl overflow-hidden border border-slate-200 hover:border-slate-300 hover:shadow-xl transition-all cursor-pointer"
+                className="group cursor-pointer overflow-hidden"
+                style={{
+                  background: 'rgba(0, 255, 255, 0.02)',
+                  border: '1px solid rgba(0, 255, 255, 0.3)',
+                  backdropFilter: 'blur(40px)',
+                  clipPath: 'polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))',
+                  boxShadow: 'inset 0 0 20px rgba(0, 255, 255, 0.05)'
+                }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                whileHover={{ y: -5 }}
               >
-                <div className="aspect-video bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center text-7xl">
+                <div 
+                  className="aspect-video flex items-center justify-center text-7xl"
+                  style={{
+                    background: `linear-gradient(135deg, ${exp.color}40, #000000)`
+                  }}
+                >
                   {exp.image}
                 </div>
                 
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-3">
-                    <span className={`text-xs font-semibold px-2 py-1 rounded ${
-                      exp.status === 'Live' 
-                        ? 'bg-green-100 text-green-700' 
-                        : 'bg-blue-100 text-blue-700'
-                    }`}>
+                    <span className="text-xs font-bold px-2 py-1 uppercase"
+                      style={{
+                        backgroundColor: exp.status === 'Live' ? 'rgba(0, 255, 0, 0.1)' : 'rgba(0, 255, 255, 0.1)',
+                        color: exp.status === 'Live' ? '#00ff00' : '#00ffff',
+                        border: `1px solid ${exp.status === 'Live' ? '#00ff00' : '#00ffff'}`,
+                        boxShadow: `0 0 10px ${exp.status === 'Live' ? '#00ff00' : '#00ffff'}40`,
+                        fontFamily: 'Source Code Pro, monospace',
+                        letterSpacing: '0.1em'
+                      }}
+                    >
                       {exp.status}
                     </span>
-                    <span className="text-xs text-slate-500 font-mono">{exp.platform}</span>
+                    <span className="text-xs" style={{ 
+                      color: '#808080',
+                      fontFamily: 'Source Code Pro, monospace'
+                    }}>
+                      {exp.platform}
+                    </span>
                   </div>
                   
-                  <h3 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">
+                  <h3 
+                    className="text-xl font-bold mb-2"
+                    style={{
+                      color: '#ffffff',
+                      fontFamily: 'Electrolize, sans-serif',
+                      letterSpacing: '0.05em'
+                    }}
+                  >
                     {exp.title}
                   </h3>
-                  <p className="text-sm text-slate-600 mb-4 line-clamp-2">
+                  <p className="text-sm mb-4 line-clamp-2" style={{ 
+                    color: '#a0a0a0',
+                    fontFamily: 'Source Code Pro, monospace'
+                  }}>
                     {exp.description}
                   </p>
                   
-                  <div className="flex items-center justify-between pt-4 border-t border-slate-100">
-                    <div className="flex items-center text-sm text-slate-500">
-                      <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                      </svg>
-                      {exp.players} {exp.status === 'Live' ? 'playing' : ''}
-                    </div>
-                    {exp.rating && (
-                      <div className="flex items-center text-sm">
-                        <span className="text-yellow-500 mr-1">★</span>
-                        <span className="text-slate-700 font-semibold">{exp.rating}</span>
-                      </div>
-                    )}
+                  <div className="flex items-center text-sm pt-4 border-t" style={{ 
+                    color: '#808080',
+                    borderColor: 'rgba(0, 255, 255, 0.2)',
+                    fontFamily: 'Source Code Pro, monospace'
+                  }}>
+                    <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                    <span style={{ color: exp.color, textShadow: `0 0 10px ${exp.color}` }}>{exp.players}</span>
+                    {exp.status === 'Live' && <span className="ml-1"> playing</span>}
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

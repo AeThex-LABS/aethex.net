@@ -5,45 +5,53 @@ import { motion } from 'framer-motion';
 const Footer: React.FC = () => {
   const footerLinks = {
     product: [
-      { label: 'Games', to: '/games' },
-      { label: 'Creator Studio', to: 'https://aethex.studio', external: true },
-      { label: 'Universal Locker', to: 'https://aethex.cloud', external: true },
-      { label: 'Passport', to: '/passport' }
+      { label: 'Experiences', to: '/experiences' },
+      { label: 'Passport', to: '/passport' },
+      { label: 'Ecosystem', to: '/ecosystem' },
+      { label: 'Creators', to: '/creators' }
     ],
     developers: [
-      { label: 'Documentation', to: 'https://aethex.cloud', external: true },
-      { label: 'API Reference', to: 'https://aethex.cloud/api', external: true },
-      { label: 'SDKs & Tools', to: 'https://aethex.cloud/sdks', external: true },
+      { label: 'Documentation', to: 'https://aethex.dev', external: true },
+      { label: 'API Reference', to: 'https://aethex.dev/api', external: true },
+      { label: 'SDKs & Tools', to: 'https://aethex.dev/sdks', external: true },
       { label: 'Status', to: '/status' }
     ],
     company: [
-      { label: 'About', to: '/about' },
-      { label: 'Foundation', to: 'https://aethex.foundation', external: true },
-      { label: 'Careers', to: 'https://careers.aethex.biz', external: true },
+      { label: 'Foundation', to: '/foundation' },
+      { label: 'Developers', to: '/developers' },
       { label: 'Contact', to: 'mailto:hello@aethex.net', external: true }
     ],
     community: [
       { label: 'Discord', to: '#', external: true },
       { label: 'Twitter', to: '#', external: true },
-      { label: 'GitHub', to: '#', external: true },
-      { label: 'Blog', to: 'https://aethex.info', external: true }
+      { label: 'GitHub', to: '#', external: true }
     ]
   };
 
   return (
     <footer 
-      className="relative overflow-hidden"
+      className="relative overflow-hidden border-t"
       style={{ 
-        background: 'linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%)',
-        borderTop: '1px solid var(--border-primary)'
+        backgroundColor: '#000000',
+        borderColor: 'rgba(0, 255, 255, 0.3)',
+        boxShadow: '0 -2px 40px rgba(0, 255, 255, 0.1)'
       }}
     >
-      {/* Cosmic gradient overlay */}
+      {/* Grid background */}
       <div className="absolute inset-0 opacity-5">
         <div style={{
-          background: 'radial-gradient(circle at 50% 0%, var(--accent-purple), transparent 60%)'
-        }} className="absolute inset-0" />
+          backgroundImage: 'linear-gradient(#00ffff 1px, transparent 1px), linear-gradient(90deg, #00ffff 1px, transparent 1px)',
+          backgroundSize: '50px 50px'
+        }} />
       </div>
+
+      {/* Scanline effect */}
+      <div 
+        className="absolute inset-0 pointer-events-none opacity-10"
+        style={{
+          backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 255, 255, 0.1) 2px, rgba(0, 255, 255, 0.1) 4px)'
+        }}
+      />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid md:grid-cols-6 gap-12 mb-12">
@@ -57,20 +65,35 @@ const Footer: React.FC = () => {
           >
             <div className="flex items-center gap-3 mb-4">
               <div 
-                className="w-10 h-10 rounded-lg flex items-center justify-center font-bold text-xl relative"
+                className="w-10 h-10 flex items-center justify-center font-bold text-xl"
                 style={{
-                  background: 'linear-gradient(135deg, var(--accent-purple), var(--accent-blue))',
-                  color: 'white'
+                  background: 'linear-gradient(135deg, #00ffff, #ff00ff)',
+                  color: '#000000',
+                  clipPath: 'polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px))',
+                  boxShadow: '0 0 20px rgba(0, 255, 255, 0.6)'
                 }}
               >
                 <span>Æ</span>
               </div>
-              <h3 className="text-2xl font-bold" style={{ color: 'var(--text-primary)' }}>
+              <h3 
+                className="text-2xl font-bold uppercase"
+                style={{ 
+                  color: '#ffffff',
+                  fontFamily: 'Electrolize, sans-serif',
+                  letterSpacing: '0.1em'
+                }}
+              >
                 AeThex
               </h3>
             </div>
             
-            <p className="text-sm leading-relaxed mb-6" style={{ color: 'var(--text-tertiary)' }}>
+            <p 
+              className="text-sm leading-relaxed mb-6"
+              style={{ 
+                color: '#a0a0a0',
+                fontFamily: 'Source Code Pro, monospace'
+              }}
+            >
               Where the Universe Meets You.
               <br />
               One identity. Infinite worlds.
@@ -85,16 +108,18 @@ const Footer: React.FC = () => {
                 <motion.a
                   key={i}
                   href={social.href}
-                  className="w-10 h-10 rounded-lg flex items-center justify-center transition-all"
+                  className="w-10 h-10 flex items-center justify-center transition-all"
                   style={{
-                    backgroundColor: 'var(--bg-tertiary)',
-                    color: 'var(--text-tertiary)',
-                    border: '1px solid var(--border-primary)'
+                    backgroundColor: 'rgba(0, 255, 255, 0.05)',
+                    color: '#00ffff',
+                    border: '1px solid rgba(0, 255, 255, 0.3)',
+                    clipPath: 'polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 4px 100%, 0 calc(100% - 4px))'
                   }}
                   whileHover={{ 
                     scale: 1.1,
-                    borderColor: 'var(--accent-purple)',
-                    color: 'var(--accent-purple)'
+                    borderColor: '#00ffff',
+                    backgroundColor: 'rgba(0, 255, 255, 0.1)',
+                    boxShadow: '0 0 20px rgba(0, 255, 255, 0.5)'
                   }}
                   transition={{ type: 'spring', stiffness: 400, damping: 10 }}
                 >
@@ -117,7 +142,11 @@ const Footer: React.FC = () => {
             >
               <h4 
                 className="text-xs font-semibold mb-4 uppercase tracking-wider"
-                style={{ color: 'var(--text-primary)' }}
+                style={{ 
+                  color: '#00ffff',
+                  fontFamily: 'Electrolize, sans-serif',
+                  letterSpacing: '0.15em'
+                }}
               >
                 {category}
               </h4>
@@ -130,20 +159,26 @@ const Footer: React.FC = () => {
                         target={link.to.startsWith('http') ? '_blank' : undefined}
                         rel={link.to.startsWith('http') ? 'noopener noreferrer' : undefined}
                         className="text-sm transition-colors inline-flex items-center gap-1 group"
-                        style={{ color: 'var(--text-tertiary)' }}
+                        style={{ 
+                          color: '#a0a0a0',
+                          fontFamily: 'Source Code Pro, monospace'
+                        }}
                       >
                         <span className="group-hover:text-white transition-colors">
                           {link.label}
                         </span>
                         {link.to.startsWith('http') && link.to !== 'mailto:hello@aethex.net' && (
-                          <span className="text-xs">→</span>
+                          <span className="text-xs" style={{ color: '#00ffff' }}>→</span>
                         )}
                       </a>
                     ) : (
                       <Link 
                         to={link.to}
                         className="text-sm transition-colors hover:text-white"
-                        style={{ color: 'var(--text-tertiary)' }}
+                        style={{ 
+                          color: '#a0a0a0',
+                          fontFamily: 'Source Code Pro, monospace'
+                        }}
                       >
                         {link.label}
                       </Link>
@@ -158,8 +193,9 @@ const Footer: React.FC = () => {
         <motion.div 
           className="pt-8 flex flex-col md:flex-row justify-between items-center text-sm gap-4"
           style={{ 
-            borderTop: '1px solid var(--border-primary)',
-            color: 'var(--text-tertiary)'
+            borderTop: '1px solid rgba(0, 255, 255, 0.2)',
+            color: '#a0a0a0',
+            fontFamily: 'Source Code Pro, monospace'
           }}
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -170,7 +206,7 @@ const Footer: React.FC = () => {
           <div className="flex items-center gap-6">
             <Link to="/privacy" className="hover:text-white transition-colors">Privacy</Link>
             <Link to="/terms" className="hover:text-white transition-colors">Terms</Link>
-            <p>Made with <span style={{ color: 'var(--accent-pink)' }}>❤️</span> for the multiverse</p>
+            <p>Made with <span style={{ color: '#ff00ff' }}>❤️</span> for the multiverse</p>
           </div>
         </motion.div>
       </div>

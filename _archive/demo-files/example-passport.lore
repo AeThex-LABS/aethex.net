@@ -1,0 +1,75 @@
+# AeThex Passport - Cross-Reality Authentication
+# Example Lore project demonstrating identity sync across platforms
+
+world AeThex_Passport {
+    realm: "identity_layer"
+    mood: secure
+    founded: 2017
+}
+
+artifact universal_identity {
+    type: passport
+    cross_platform: true
+    memory: {
+        username: "MrPiglr"
+        worlds_visited: 7
+        achievements: ["rdc_veteran", "hide_seek_creator", "trinity_founder"]
+    }
+}
+
+chapter AuthenticatePlayer(traveler, platform) {
+    mood: welcoming
+    
+    when traveler.attempts_login {
+        sync traveler.identity across platforms
+        
+        if traveler.verified {
+            whisper "Identity confirmed across realities"
+            reveal traveler.username
+            return portal_key
+        } otherwise {
+            atmosphere: cautious
+            whisper "Unknown traveler detected"
+            return visitor_pass
+        }
+    }
+}
+
+chapter SyncAvatarCosmetics(passport) {
+    mood: creative
+    
+    when passport.has_cosmetics {
+        sync passport.cosmetics across [roblox, unity, web]
+        whisper "Your style persists across worlds"
+        reveal "Synchronized appearance data"
+    }
+}
+
+signal player_count > 1000 {
+    atmosphere.shift_to: "epic"
+    broadcast "The metaverse awakens - 1000+ simultaneous travelers!"
+}
+
+quest OnboardNewPlayer {
+    stage welcome {
+        whisper "Welcome to AeThex, traveler"
+        reveal "Choose your identity"
+    }
+    
+    stage create_passport {
+        artifact player_passport {
+            type: passport
+            cross_platform: true
+        }
+        whisper "Your universal identity is ready"
+    }
+    
+    stage tour {
+        whisper "Let me show you the connected worlds..."
+        reveal "Roblox, Unity, Web - all one journey"
+    }
+    
+    stage complete {
+        broadcast "A new architect joins the metaverse!"
+    }
+}

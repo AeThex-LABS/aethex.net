@@ -15,7 +15,7 @@ const PathSelector: React.FC = () => {
         'Universal inventory'
       ],
       cta: 'Browse Games',
-      color: 'var(--accent-blue)',
+      color: '#00ffff',
       link: '/games'
     },
     {
@@ -29,7 +29,7 @@ const PathSelector: React.FC = () => {
         'Creator monetization'
       ],
       cta: 'Start Creating',
-      color: 'var(--accent-purple)',
+      color: '#ff00ff',
       link: 'https://aethex.studio',
       external: true
     },
@@ -44,7 +44,7 @@ const PathSelector: React.FC = () => {
         'Enterprise infrastructure'
       ],
       cta: 'View Developer Docs',
-      color: 'var(--accent-teal)',
+      color: '#00ff00',
       link: 'https://aethex.cloud',
       external: true
     },
@@ -62,24 +62,23 @@ const PathSelector: React.FC = () => {
 
   const cardVariants = {
     hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.22, 1, 0.36, 1]
-      }
-    }
+    visible: { opacity: 1, y: 0 }
   };
 
   return (
-    <section className="relative py-24 overflow-hidden" style={{ backgroundColor: 'var(--bg-primary)' }}>
-      {/* Animated grid background */}
-      <div className="absolute inset-0 opacity-20">
+    <section className="relative py-24 overflow-hidden" style={{ backgroundColor: '#000000' }}>
+      {/* Grid background */}
+      <div className="absolute inset-0 opacity-15">
         <div className="absolute inset-0" style={{
-          backgroundImage: `linear-gradient(var(--border-primary) 1px, transparent 1px), linear-gradient(90deg, var(--border-primary) 1px, transparent 1px)`,
-          backgroundSize: '50px 50px',
-          animation: 'grid-move 20s linear infinite'
+          backgroundImage: 'linear-gradient(#00ffff 1px, transparent 1px), linear-gradient(90deg, #00ffff 1px, transparent 1px)',
+          backgroundSize: '50px 50px'
+        }} />
+      </div>
+
+      {/* Scanline overlay */}
+      <div className="absolute inset-0 pointer-events-none opacity-10">
+        <div style={{
+          background: 'repeating-linear-gradient(0deg, transparent, transparent 2px, #00ffff 2px, #00ffff 4px)'
         }} />
       </div>
 
@@ -92,16 +91,21 @@ const PathSelector: React.FC = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-5xl font-bold mb-4" style={{ 
-            background: 'linear-gradient(135deg, var(--accent-purple), var(--accent-blue), var(--accent-teal))',
+            background: 'linear-gradient(135deg, #00ffff, #ff00ff, #00ff00)',
             backgroundClip: 'text',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             backgroundSize: '200% 200%',
-            animation: 'gradient-shift 8s ease infinite'
+            animation: 'gradient-shift 8s ease infinite',
+            fontFamily: 'Electrolize, sans-serif',
+            letterSpacing: '0.1em'
           }}>
             Choose Your Path
           </h2>
-          <p className="text-xl" style={{ color: 'var(--text-secondary)' }}>
+          <p className="text-xl" style={{ 
+            color: '#a0a0a0',
+            fontFamily: 'Source Code Pro, monospace'
+          }}>
             Whether you're here to play, create, or build — we've got you covered
           </p>
         </motion.div>
@@ -121,19 +125,23 @@ const PathSelector: React.FC = () => {
               transition={{ type: 'spring', stiffness: 300, damping: 20 }}
             >
               <div
-                className="card relative h-full p-8 group"
+                className="relative h-full p-8 group"
                 style={{
-                  background: 'var(--bg-secondary)',
-                  borderColor: 'var(--border-primary)',
+                  background: 'rgba(0, 255, 255, 0.02)',
+                  border: '1px solid rgba(0, 255, 255, 0.3)',
+                  backdropFilter: 'blur(40px)',
+                  clipPath: 'polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px))',
+                  boxShadow: 'inset 0 0 20px rgba(0, 255, 255, 0.05)',
+                  transition: 'all 0.3s ease'
                 }}
               >
-                {/* Animated cosmic border on hover */}
+                {/* Neon glow on hover */}
                 <div 
-                  className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
                   style={{
-                    background: `linear-gradient(135deg, ${path.color}, transparent)`,
-                    filter: 'blur(20px)',
-                    zIndex: -1
+                    boxShadow: `0 0 40px ${path.color}, 0 0 80px ${path.color}80`,
+                    border: `1px solid ${path.color}`,
+                    clipPath: 'polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px))'
                   }}
                 />
                 
@@ -146,27 +154,37 @@ const PathSelector: React.FC = () => {
                     {path.icon}
                   </motion.div>
                   
-                  <h3 className="text-3xl font-bold mb-3" style={{ color: 'var(--text-primary)' }}>
+                  <h3 className="text-3xl font-bold mb-3" style={{ 
+                    color: '#ffffff',
+                    fontFamily: 'Electrolize, sans-serif',
+                    letterSpacing: '0.05em'
+                  }}>
                     {path.title}
                   </h3>
                   
-                  <p className="mb-6 leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                  <p className="mb-6 leading-relaxed" style={{ 
+                    color: '#a0a0a0',
+                    fontFamily: 'Source Code Pro, monospace'
+                  }}>
                     {path.description}
                   </p>
                   
-                  <ul className="space-y-3 mb-8 flex-grow">
+                  <ul className="space-y-3 mb-8 grow">
                     {path.features.map((feature, i) => (
                       <motion.li 
                         key={feature} 
                         className="flex items-start text-sm"
-                        style={{ color: 'var(--text-secondary)' }}
+                        style={{ 
+                          color: '#a0a0a0',
+                          fontFamily: 'Source Code Pro, monospace'
+                        }}
                         initial={{ opacity: 0, x: -10 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 * i }}
                       >
                         <svg 
-                          className="w-5 h-5 mr-2 mt-0.5 flex-shrink-0" 
+                          className="w-5 h-5 mr-2 mt-0.5 shrink-0" 
                           fill="none" 
                           stroke="currentColor" 
                           viewBox="0 0 24 24"
@@ -184,25 +202,37 @@ const PathSelector: React.FC = () => {
                       href={path.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full py-3 px-6 rounded-lg font-semibold text-center transition-all relative overflow-hidden group/btn"
+                      className="w-full py-3 px-6 font-bold text-xs text-center uppercase transition-all relative overflow-hidden group/btn"
                       style={{
-                        background: `linear-gradient(135deg, ${path.color}, ${path.color})`,
-                        color: 'white'
+                        background: path.color === '#00ffff' ? 'linear-gradient(135deg, #00ffff, #00ffff)' : path.color === '#ff00ff' ? 'linear-gradient(135deg, #ff00ff, #ff00ff)' : 'linear-gradient(135deg, #00ff00, #00ff00)',
+                        color: '#000000',
+                        fontFamily: 'Source Code Pro, monospace',
+                        letterSpacing: '0.15em',
+                        clipPath: 'polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px))',
+                        border: `1px solid ${path.color}`,
+                        boxShadow: `0 0 20px ${path.color}80, inset 0 0 20px rgba(255, 255, 255, 0.1)`,
+                        textShadow: '0 0 10px rgba(0, 0, 0, 0.5)'
                       }}
                     >
-                      <span className="relative z-10">{path.cta} →</span>
+                      <span className="relative z-10">{path.cta.toUpperCase()} →</span>
                       <div className="absolute inset-0 bg-white opacity-0 group-hover/btn:opacity-20 transition-opacity" />
                     </a>
                   ) : (
                     <Link
                       to={path.link}
-                      className="w-full py-3 px-6 rounded-lg font-semibold text-center transition-all relative overflow-hidden group/btn"
+                      className="w-full py-3 px-6 font-bold text-xs text-center uppercase transition-all relative overflow-hidden group/btn"
                       style={{
                         background: `linear-gradient(135deg, ${path.color}, ${path.color})`,
-                        color: 'white'
+                        color: '#000000',
+                        fontFamily: 'Source Code Pro, monospace',
+                        letterSpacing: '0.15em',
+                        clipPath: 'polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px))',
+                        border: `1px solid ${path.color}`,
+                        boxShadow: `0 0 20px ${path.color}80, inset 0 0 20px rgba(255, 255, 255, 0.1)`,
+                        textShadow: '0 0 10px rgba(0, 0, 0, 0.5)'
                       }}
                     >
-                      <span className="relative z-10">{path.cta} →</span>
+                      <span className="relative z-10">{path.cta.toUpperCase()} →</span>
                       <div className="absolute inset-0 bg-white opacity-0 group-hover/btn:opacity-20 transition-opacity" />
                     </Link>
                   )}

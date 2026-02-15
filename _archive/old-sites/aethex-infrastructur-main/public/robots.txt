@@ -1,0 +1,22 @@
+# AeThex Robots Configuration
+
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://aethex.net/sitemap.xml
+
+# Crawl delay
+Crawl-delay: 1
+
+# Disallow admin paths (if any in future)
+Disallow: /admin/
+Disallow: /api/
+
+# Allow important pages
+Allow: /
+Allow: /docs
+Allow: /playground
+Allow: /pricing
+Allow: /showcase
+Allow: /status

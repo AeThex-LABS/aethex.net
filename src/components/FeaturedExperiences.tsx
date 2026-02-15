@@ -11,7 +11,7 @@ const FeaturedExperiences: React.FC = () => {
       players: '45K',
       platform: 'Roblox',
       status: 'Live',
-      color: 'var(--accent-blue)'
+      color: '#00ffff'
     },
     {
       title: 'Cosmic Traders',
@@ -20,7 +20,7 @@ const FeaturedExperiences: React.FC = () => {
       players: '32K',
       platform: 'Unity',
       status: 'Live',
-      color: 'var(--accent-purple)'
+      color: '#ff00ff'
     },
     {
       title: 'The Foundation Arena',
@@ -29,7 +29,7 @@ const FeaturedExperiences: React.FC = () => {
       players: '28K',
       platform: 'Web',
       status: 'Live',
-      color: 'var(--accent-pink)'
+      color: '#00ff00'
     },
     {
       title: 'Project Horizon',
@@ -38,7 +38,7 @@ const FeaturedExperiences: React.FC = () => {
       players: 'TBA',
       platform: 'Multi',
       status: 'Coming Soon',
-      color: 'var(--accent-teal)'
+      color: '#00ffff'
     },
   ];
 
@@ -54,22 +54,16 @@ const FeaturedExperiences: React.FC = () => {
 
   const cardVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        ease: [0.22, 1, 0.36, 1]
-      }
-    }
+    visible: { opacity: 1, y: 0 }
   };
 
   return (
-    <section className="relative py-24 overflow-hidden" style={{ backgroundColor: 'var(--bg-secondary)' }}>
-      {/* Subtle cosmic gradient overlay */}
+    <section className="relative py-24 overflow-hidden" style={{ backgroundColor: '#000000' }}>
+      {/* Grid overlay */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0" style={{
-          background: 'radial-gradient(circle at 50% 50%, var(--accent-purple), transparent 70%)'
+          backgroundImage: 'linear-gradient(#00ffff 1px, transparent 1px), linear-gradient(90deg, #00ffff 1px, transparent 1px)',
+          backgroundSize: '50px 50px'
         }} />
       </div>
 
@@ -82,16 +76,21 @@ const FeaturedExperiences: React.FC = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-5xl font-bold mb-4" style={{ 
-            background: 'linear-gradient(135deg, var(--accent-purple), var(--accent-blue), var(--accent-teal))',
+            background: 'linear-gradient(135deg, #00ffff, #ff00ff, #00ff00)',
             backgroundClip: 'text',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             backgroundSize: '200% 200%',
-            animation: 'gradient-shift 8s ease infinite'
+            animation: 'gradient-shift 8s ease infinite',
+            fontFamily: 'Electrolize, sans-serif',
+            letterSpacing: '0.1em'
           }}>
             Featured Experiences
           </h2>
-          <p className="text-xl" style={{ color: 'var(--text-secondary)' }}>
+          <p className="text-xl" style={{ 
+            color: '#a0a0a0',
+            fontFamily: 'Source Code Pro, monospace'
+          }}>
             Explore games built on the AeThex ecosystem
           </p>
         </motion.div>
@@ -110,12 +109,21 @@ const FeaturedExperiences: React.FC = () => {
               whileHover={{ y: -8, scale: 1.02 }}
               transition={{ type: 'spring', stiffness: 300, damping: 20 }}
             >
-              <div className="glass-panel h-full overflow-hidden group cursor-pointer">
-                {/* Image placeholder with emoji and cosmic gradient */}
+              <div className="h-full overflow-hidden group cursor-pointer"
+                style={{
+                  background: 'rgba(0, 255, 255, 0.02)',
+                  border: '1px solid rgba(0, 255, 255, 0.3)',
+                  backdropFilter: 'blur(40px)',
+                  clipPath: 'polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))',
+                  boxShadow: 'inset 0 0 20px rgba(0, 255, 255, 0.05)',
+                  transition: 'all 0.3s ease'
+                }}
+              >
+                {/* Image placeholder with emoji and neon gradient */}
                 <div 
                   className="aspect-video flex items-center justify-center text-6xl relative overflow-hidden"
                   style={{
-                    background: `linear-gradient(135deg, ${exp.color}, var(--bg-tertiary))`
+                    background: `linear-gradient(135deg, ${exp.color}40, #000000)`
                   }}
                 >
                   <motion.div
@@ -127,9 +135,9 @@ const FeaturedExperiences: React.FC = () => {
                   
                   {/* Animated glow effect */}
                   <div 
-                    className="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity duration-500"
+                    className="absolute inset-0 opacity-0 group-hover:opacity-50 transition-opacity duration-500"
                     style={{
-                      background: `radial-gradient(circle at center, ${exp.color}, transparent 70%)`
+                      boxShadow: `inset 0 0 60px ${exp.color}, 0 0 30px ${exp.color}`
                     }}
                   />
                 </div>
@@ -137,16 +145,22 @@ const FeaturedExperiences: React.FC = () => {
                 <div className="p-5">
                   <div className="flex items-center justify-between mb-3">
                     <span 
-                      className="text-xs font-semibold px-2.5 py-1 rounded-full"
+                      className="text-xs font-bold px-2.5 py-1 uppercase"
                       style={{
-                        backgroundColor: exp.status === 'Live' ? 'rgba(34, 197, 94, 0.1)' : 'rgba(59, 130, 246, 0.1)',
-                        color: exp.status === 'Live' ? '#22c55e' : 'var(--accent-blue)',
-                        border: `1px solid ${exp.status === 'Live' ? 'rgba(34, 197, 94, 0.3)' : 'rgba(59, 130, 246, 0.3)'}`
+                        backgroundColor: exp.status === 'Live' ? 'rgba(0, 255, 0, 0.1)' : 'rgba(0, 255, 255, 0.1)',
+                        color: exp.status === 'Live' ? '#00ff00' : '#00ffff',
+                        border: `1px solid ${exp.status === 'Live' ? '#00ff00' : '#00ffff'}`,
+                        boxShadow: `0 0 10px ${exp.status === 'Live' ? '#00ff00' : '#00ffff'}40`,
+                        fontFamily: 'Source Code Pro, monospace',
+                        letterSpacing: '0.1em'
                       }}
                     >
                       {exp.status}
                     </span>
-                    <span className="text-xs font-mono" style={{ color: 'var(--text-tertiary)' }}>
+                    <span className="text-xs font-mono" style={{ 
+                      color: '#808080',
+                      fontFamily: 'Source Code Pro, monospace'
+                    }}>
                       {exp.platform}
                     </span>
                   </div>
@@ -154,21 +168,29 @@ const FeaturedExperiences: React.FC = () => {
                   <h3 
                     className="text-lg font-bold mb-2 transition-colors"
                     style={{ 
-                      color: 'var(--text-primary)'
+                      color: '#ffffff',
+                      fontFamily: 'Electrolize, sans-serif',
+                      letterSpacing: '0.05em'
                     }}
                   >
                     {exp.title}
                   </h3>
                   
-                  <p className="text-sm mb-4 line-clamp-2" style={{ color: 'var(--text-secondary)' }}>
+                  <p className="text-sm mb-4 line-clamp-2" style={{ 
+                    color: '#a0a0a0',
+                    fontFamily: 'Source Code Pro, monospace'
+                  }}>
                     {exp.description}
                   </p>
                   
-                  <div className="flex items-center text-sm" style={{ color: 'var(--text-tertiary)' }}>
+                  <div className="flex items-center text-sm" style={{ 
+                    color: '#808080',
+                    fontFamily: 'Source Code Pro, monospace'
+                  }}>
                     <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                     </svg>
-                    <span style={{ color: exp.color }}>{exp.players}</span>
+                    <span style={{ color: exp.color, textShadow: `0 0 10px ${exp.color}` }}>{exp.players}</span>
                     {exp.status === 'Live' && <span className="ml-1">playing</span>}
                   </div>
                 </div>

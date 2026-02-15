@@ -1,0 +1,35 @@
+# AeThex Passport - Universal Identity System
+# Working MVP example
+
+reality AeThex_Passport {
+    type: "identity_layer"
+    platforms: all
+    founded: 2017
+}
+
+passport universal_identity {
+    username: "MrPiglr"
+    verified: true
+    worlds_visited: 7
+}
+
+journey AuthenticateUser(traveler) {
+    platform: all
+    
+    when traveler.verified {
+        sync traveler.passport across [roblox, uefn, web]
+        notify "Identity confirmed across realities"
+        reveal traveler.username
+    }
+}
+
+journey SyncCosmetics(passport) {
+    platform: all
+    
+    sync passport.cosmetics across [roblox, uefn, web]
+    notify "Your style persists across worlds"
+}
+
+signal player_count > 1000 {
+    broadcast "The metaverse awakens - 1000+ concurrent users!"
+}

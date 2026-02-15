@@ -1,0 +1,138 @@
+# GameForge 48-Hour Jam
+# Educational game jam powered by AeThex infrastructure
+
+world GameForge {
+    realm: "developer_education"
+    mood: intense
+    duration: 48_hours
+}
+
+artifact participant_badge {
+    type: achievement
+    cross_platform: true
+    memory: {
+        team: "random_assigned"
+        progress: 0
+        mentor_assists: 0
+    }
+}
+
+quest GameForge_48h_Jam {
+    duration: 48_hours
+    atmosphere: intense
+    
+    stage registration {
+        mood: excited
+        
+        when developer.registers {
+            artifact participant {
+                type: badge
+                granted: timestamp
+            }
+            whisper "Welcome to GameForge!"
+            reveal "You have 48 hours to create magic"
+        }
+    }
+    
+    stage team_formation {
+        mood: social
+        
+        chapter AssignTeams(participants) {
+            shuffle participants
+            create teams of 3_to_5
+            whisper "Your team awaits in Discord"
+        }
+    }
+    
+    stage development {
+        countdown: 48_hours
+        
+        chapter MonitorProgress(teams) {
+            observe teams every 6_hours {
+                if team.stuck {
+                    mood: supportive
+                    whisper "Need a mentor? We're here to help"
+                    offer mentor_connection
+                }
+                
+                if team.progress > 50_percent {
+                    mood: encouraging
+                    whisper "You're halfway there! Keep building!"
+                }
+            }
+        }
+    }
+    
+    stage submission {
+        deadline: strict
+        
+        when team.submits(game) {
+            atmosphere: hopeful
+            
+            verify game.playable
+            verify game.cross_platform
+            
+            if verified {
+                whisper "Submission received! Good luck!"
+                add_to showcase
+            }
+        }
+    }
+    
+    stage judging {
+        mood: anticipation
+        
+        chapter EvaluateGames(submissions) {
+            parallel judge_reviews
+            
+            criteria: [
+                "Innovation: 30%",
+                "Cross-platform: 25%",
+                "Polish: 25%",
+                "Fun Factor: 20%"
+            ]
+            
+            calculate winner {
+                aggregate scores
+                atmosphere: triumphant
+                reveal "And the winner is..."
+            }
+        }
+    }
+    
+    stage celebration {
+        mood: triumphant
+        
+        broadcast "Developer of Tomorrow award goes to..."
+        reveal winner.team
+        
+        whisper "Every participant helped push gaming forward"
+        
+        grant all_participants {
+            artifact completion_badge
+            artifact portfolio_piece
+            artifact community_access
+        }
+    }
+}
+
+signal countdown < 6_hours {
+    atmosphere.shift_to: "urgent"
+    broadcast "Final sprint! 6 hours remaining!"
+}
+
+signal countdown < 1_hour {
+    atmosphere.shift_to: "frantic"
+    broadcast "ONE HOUR LEFT! Polish and submit!"
+}
+
+chapter ProvideResources(team) {
+    mood: supportive
+    
+    reveal resources: {
+        "AeThex Docs": "https://docs.aethex.education"
+        "Example Templates": "https://github.com/aethex"
+        "Discord Support": "#gameforge-help"
+        "Mentor Hours": "Every 6 hours"
+    }
+}

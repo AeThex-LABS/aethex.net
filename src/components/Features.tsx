@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 export default function Features() {
   const [hoveredFeature, setHoveredFeature] = useState<number | null>(null);

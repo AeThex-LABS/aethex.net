@@ -1,0 +1,17 @@
+# Simple AeThex Test
+
+reality TestReality {
+    type: "test"
+    platforms: all
+}
+
+passport test_user {
+    username: "TestUser"
+    verified: true
+}
+
+journey SimpleTest(user) {
+    platform: all
+    notify "Hello from AeThex!"
+    reveal user.username
+}

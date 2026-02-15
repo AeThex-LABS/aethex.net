@@ -1,0 +1,244 @@
+@import 'tailwindcss';
+@import "tw-animate-css";
+
+@layer base {
+  * {
+    @apply border-border;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+  }
+  
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    line-height: 1.6;
+    letter-spacing: -0.01em;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+  
+  h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); }
+  h2 { font-size: clamp(2rem, 4vw, 3.5rem); }
+  h3 { font-size: clamp(1.5rem, 3vw, 2.25rem); }
+  
+  code, pre {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  }
+  
+  /* Smooth transitions for interactive elements */
+  button, a, [role="button"] {
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  button:active, a:active {
+    transform: scale(0.98);
+  }
+  
+  /* Optimize scrolling */
+  * {
+    scroll-margin-top: 120px;
+  }
+}
+
+@layer utilities {
+  /* Smooth hover effects */
+  .hover-lift {
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 217, 255, 0.15);
+  }
+
+  /* Card hover effect */
+  .card-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .card-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Loading skeleton animation */
+  @keyframes shimmer {
+    0% {
+      background-position: -1000px 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+
+  .skeleton {
+    animation: shimmer 2s infinite linear;
+    background: linear-gradient(
+      to right,
+      #1a1a1a 4%,
+      #2a2a2a 25%,
+      #1a1a1a 36%
+    );
+    background-size: 1000px 100%;
+  }
+  
+  /* Smooth page transitions */
+  .page-fade-in {
+    animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Fade in up animation */
+  .fade-in-up {
+    animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Glassmorphism effect */
+  .glass {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-primary via-neon-purple to-accent;
+  }
+}
+
+:root {
+  --background: oklch(0.10 0.02 265);
+  --foreground: oklch(0.98 0 0);
+
+  --card: oklch(0.12 0.03 270);
+  --card-foreground: oklch(0.98 0 0);
+  
+  --popover: oklch(0.12 0.03 270);
+  --popover-foreground: oklch(0.98 0 0);
+
+  --primary: oklch(0.62 0.24 286);
+  --primary-foreground: oklch(0.98 0 0);
+
+  --secondary: oklch(0.20 0.04 270);
+  --secondary-foreground: oklch(0.98 0 0);
+
+  --muted: oklch(0.15 0.03 270);
+  --muted-foreground: oklch(0.65 0.02 265);
+
+  --accent: oklch(0.71 0.14 210);
+  --accent-foreground: oklch(0.10 0.02 265);
+
+  --destructive: oklch(0.60 0.24 25);
+  --destructive-foreground: oklch(0.98 0 0);
+
+  --border: oklch(0.20 0.04 270);
+  --input: oklch(0.20 0.04 270);
+  --ring: oklch(0.62 0.24 286);
+
+  --radius: 0.75rem;
+  
+  --neon-blue: oklch(0.73 0.14 240);
+  --neon-purple: oklch(0.78 0.19 295);
+  --electric-cyan: oklch(0.71 0.14 210);
+  
+  --labs-yellow: oklch(0.80 0.15 85);
+  --gameforge-green: oklch(0.65 0.20 145);
+  --corp-blue: oklch(0.60 0.20 250);
+  --foundation-red: oklch(0.62 0.24 25);
+  --devlink-cyan: oklch(0.68 0.16 205);
+  --nexus-purple: oklch(0.68 0.22 295);
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) * 0.5);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) * 1.5);
+  --radius-xl: calc(var(--radius) * 2);
+  --radius-2xl: calc(var(--radius) * 3);
+  --radius-full: 9999px;
+  
+  --color-neon-blue: var(--neon-blue);
+  --color-neon-purple: var(--neon-purple);
+  --color-electric-cyan: var(--electric-cyan);
+  
+  --color-labs-yellow: var(--labs-yellow);
+  --color-gameforge-green: var(--gameforge-green);
+  --color-corp-blue: var(--corp-blue);
+  --color-foundation-red: var(--foundation-red);
+  --color-devlink-cyan: var(--devlink-cyan);
+  --color-nexus-purple: var(--nexus-purple);
+}
+
+.glow-primary {
+  box-shadow: 0 0 20px oklch(0.62 0.24 286 / 0.3), 0 0 40px oklch(0.62 0.24 286 / 0.1);
+}
+
+.glow-accent {
+  box-shadow: 0 0 20px oklch(0.71 0.14 210 / 0.3), 0 0 40px oklch(0.71 0.14 210 / 0.1);
+}
+
+.glow-neon-blue {
+  box-shadow: 0 0 20px oklch(0.73 0.14 240 / 0.3), 0 0 40px oklch(0.73 0.14 240 / 0.1);
+}
+
+.text-glow {
+  text-shadow: 0 0 20px currentColor;
+}
+
+.grid-pattern {
+  background-image: 
+    linear-gradient(oklch(0.20 0.04 270 / 0.5) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(0.20 0.04 270 / 0.5) 1px, transparent 1px);
+  background-size: 40px 40px;
+}

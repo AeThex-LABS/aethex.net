@@ -1,0 +1,11 @@
+🚀 TO SEE THE 3D GLOBE:
+
+1. Go to: https://kmdeisowhtsalsekkzqd.supabase.co
+2. Click "SQL Editor" in left sidebar
+3. Click "New Query"
+4. Copy the ENTIRE supabase-developers-schema.sql file (you have it open!)
+5. Paste into SQL Editor
+6. Click "RUN"
+7. Refresh /globe page
+
+This creates the developers table with 5 sample developers that will appear as 3D nodes on the globe!

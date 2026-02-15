@@ -1,0 +1,21 @@
+{
+  "name": "AeThex - Cross-Platform Gaming Infrastructure",
+  "short_name": "AeThex",
+  "description": "Enterprise-grade API for real-time game state synchronization",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A0A0A",
+  "theme_color": "#00D9FF",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["developer tools", "gaming", "productivity"],
+  "lang": "en-US",
+  "dir": "ltr"
+}

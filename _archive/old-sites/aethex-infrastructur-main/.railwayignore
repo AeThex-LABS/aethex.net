@@ -1,0 +1,47 @@
+# Files to exclude from Railway deployment
+
+# Development files
+.git
+.gitignore
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Development directories
+node_modules
+.cache
+coverage
+.nyc_output
+
+# Environment files
+.env.local
+.env.development
+.env.test
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Documentation (optional - comment out if you want docs deployed)
+# *.md
+# docs/
+
+# Test files
+*.test.ts
+*.test.tsx
+*.spec.ts
+*.spec.tsx
+__tests__
+__mocks__
+
+# Server directory (if deploying frontend only)
+# Uncomment this line if you're deploying backend separately
+# server/

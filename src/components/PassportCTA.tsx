@@ -5,42 +5,51 @@ import { Link } from 'react-router-dom';
 const PassportCTA: React.FC = () => {
   return (
     <section 
-      className="relative py-24 overflow-hidden"
-      style={{
-        background: 'linear-gradient(135deg, var(--bg-primary), var(--bg-secondary), var(--bg-tertiary))'
-      }}
+      className="relative pb-24 overflow-hidden"
+      style={{ backgroundColor: '#000000', paddingTop: '80px' }}
     >
-      {/* Animated cosmic background */}
-      <div className="absolute inset-0 opacity-30">
+      {/* Grid background */}
+      <div className="absolute inset-0 opacity-20">
         <div 
           className="absolute inset-0"
           style={{
-            background: 'radial-gradient(circle at 20% 50%, var(--accent-purple), transparent 50%), radial-gradient(circle at 80% 50%, var(--accent-blue), transparent 50%)',
-            animation: 'pulse-glow 8s ease-in-out infinite'
+            backgroundImage: 'linear-gradient(#00ffff 1px, transparent 1px), linear-gradient(90deg, #00ffff 1px, transparent 1px)',
+            backgroundSize: '50px 50px'
           }}
         />
       </div>
 
-      {/* Floating particles */}
+      {/* Scanline overlay */}
+      <div className="absolute inset-0 pointer-events-none opacity-10">
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: 'repeating-linear-gradient(0deg, transparent, transparent 2px, #00ffff 2px, #00ffff 4px)'
+          }}
+        />
+      </div>
+
+      {/* Data stream particles */}
       <div className="absolute inset-0">
         {[...Array(15)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-1 h-1 rounded-full"
+            className="absolute w-0.5 h-20"
             style={{
-              background: i % 3 === 0 ? 'var(--accent-purple)' : i % 3 === 1 ? 'var(--accent-blue)' : 'var(--accent-teal)',
+              background: `linear-gradient(to bottom, transparent, ${i % 3 === 0 ? '#00ffff' : i % 3 === 1 ? '#ff00ff' : '#00ff00'}, transparent)`,
               left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              top: '-100px',
+              boxShadow: `0 0 10px ${i % 3 === 0 ? '#00ffff' : i % 3 === 1 ? '#ff00ff' : '#00ff00'}`
             }}
             animate={{
-              y: [0, -30, 0],
-              opacity: [0.2, 0.8, 0.2],
-              scale: [1, 1.5, 1],
+              y: ['0vh', '100vh'],
+              opacity: [0, 1, 1, 0],
             }}
             transition={{
               duration: 3 + Math.random() * 2,
               repeat: Infinity,
               delay: Math.random() * 2,
+              ease: 'linear'
             }}
           />
         ))}
@@ -70,7 +79,11 @@ const PassportCTA: React.FC = () => {
 
         <motion.h2 
           className="text-5xl font-bold mb-6"
-          style={{ color: 'var(--text-primary)' }}
+          style={{ 
+            color: '#ffffff',
+            fontFamily: 'Electrolize, sans-serif',
+            letterSpacing: '0.1em'
+          }}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -78,7 +91,7 @@ const PassportCTA: React.FC = () => {
         >
           Get Your{' '}
           <span style={{ 
-            background: 'linear-gradient(135deg, var(--accent-purple), var(--accent-blue), var(--accent-teal))',
+            background: 'linear-gradient(135deg, #00ffff, #ff00ff, #00ff00)',
             backgroundClip: 'text',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
@@ -91,7 +104,10 @@ const PassportCTA: React.FC = () => {
 
         <motion.p 
           className="text-xl mb-10 leading-relaxed"
-          style={{ color: 'var(--text-secondary)' }}
+          style={{ 
+            color: '#a0a0a0',
+            fontFamily: 'Source Code Pro, monospace'
+          }}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -111,24 +127,41 @@ const PassportCTA: React.FC = () => {
           <input
             type="email"
             placeholder="Enter your email"
-            className="px-6 py-4 rounded-lg focus:outline-none focus:ring-2 backdrop-blur"
+            className="px-6 py-4 focus:outline-none focus:ring-2 backdrop-blur text-xs"
             style={{
-              background: 'rgba(255, 255, 255, 0.05)',
-              border: '1px solid var(--glass-border)',
-              color: 'var(--text-primary)',
+              background: 'rgba(0, 255, 255, 0.05)',
+              border: '1px solid rgba(0, 255, 255, 0.3)',
+              color: '#ffffff',
+              fontFamily: 'Source Code Pro, monospace',
+              letterSpacing: '0.05em',
+              clipPath: 'polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))',
+              boxShadow: 'inset 0 0 20px rgba(0, 255, 255, 0.1), 0 0 20px rgba(0, 255, 255, 0.2)'
             }}
           />
           <Link
             to="/passport"
-            className="btn-primary"
+            className="px-6 py-4 text-xs font-bold uppercase relative overflow-hidden"
+            style={{
+              background: 'linear-gradient(135deg, #00ffff, #ff00ff)',
+              color: '#000000',
+              fontFamily: 'Source Code Pro, monospace',
+              letterSpacing: '0.15em',
+              clipPath: 'polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))',
+              border: '1px solid #00ffff',
+              boxShadow: '0 0 30px rgba(0, 255, 255, 0.6), 0 0 60px rgba(255, 0, 255, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.2)',
+              textShadow: '0 0 10px rgba(0, 0, 0, 0.5)'
+            }}
           >
-            Create Passport
+            CREATE PASSPORT
           </Link>
         </motion.div>
         
         <motion.div 
           className="grid grid-cols-2 md:grid-cols-4 gap-6 text-sm"
-          style={{ color: 'var(--text-tertiary)' }}
+          style={{ 
+            color: '#808080',
+            fontFamily: 'Source Code Pro, monospace'
+          }}
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -151,8 +184,9 @@ const PassportCTA: React.FC = () => {
               <span 
                 className="w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold"
                 style={{
-                  background: 'var(--accent-teal)',
-                  color: 'var(--bg-primary)'
+                  background: '#00ff00',
+                  color: '#000000',
+                  boxShadow: '0 0 15px rgba(0, 255, 0, 0.8)'
                 }}
               >
                 {item.icon}

@@ -1,264 +1,257 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import EcosystemMap from '../components/EcosystemMap';
 
 const Ecosystem: React.FC = () => {
+  const platforms = [
+    {
+      category: 'Consumer & Discovery',
+      color: '#00ffff',
+      items: [
+        {
+          icon: '🌐',
+          name: 'aethex.net',
+          description: 'The Gateway - Consumer portal for players and creators',
+          badge: 'Current Site',
+          link: null
+        }
+      ]
+    },
+    {
+      category: 'Infrastructure & Development',
+      color: '#ff00ff',
+      items: [
+        {
+          icon: '☁️',
+          name: 'aethex.cloud',
+          description: 'B2B SaaS APIs & infrastructure sales platform',
+          badge: 'Live',
+          link: 'https://aethex.cloud'
+        },
+        {
+          icon: '🏢',
+          name: 'aethex.inc',
+          description: 'Enterprise solutions & custom contract services',
+          badge: 'Live',
+          link: 'https://aethex.inc'
+        },
+        {
+          icon: '👨‍💻',
+          name: 'aethex.dev',
+          description: 'Developer portal & technical documentation hub',
+          badge: 'Live',
+          link: 'https://aethex.dev'
+        },
+        {
+          icon: '⚙️',
+          name: 'aethex.tech',
+          description: 'Integration guides & SDK documentation',
+          badge: 'Live',
+          link: 'https://aethex.tech'
+        }
+      ]
+    },
+    {
+      category: 'Creator Tools',
+      color: '#00ff00',
+      items: [
+        {
+          icon: '🎨',
+          name: 'aethex.studio',
+          description: 'No-code creator platform for building experiences',
+          badge: 'Beta',
+          link: 'https://aethex.studio'
+        },
+        {
+          icon: '🗃️',
+          name: 'aethex.locker',
+          description: 'Universal inventory & asset management',
+          badge: 'Beta',
+          link: 'https://aethex.locker'
+        }
+      ]
+    },
+    {
+      category: 'Governance & Community',
+      color: '#ff00ff',
+      items: [
+        {
+          icon: '🏛️',
+          name: 'aethex.foundation',
+          description: 'DAO governance & community decision platform',
+          badge: 'Live',
+          link: 'https://aethex.foundation'
+        }
+      ]
+    }
+  ];
+
   return (
-    <div className="min-h-screen bg-white">
+    <div style={{ backgroundColor: '#000000', minHeight: '100vh' }}>
       {/* Hero */}
-      <section className="bg-slate-50 py-20 border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-6xl font-bold text-slate-900 mb-6">
-            The AeThex Ecosystem
-          </h1>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto mb-8">
+      <section className="relative pb-20 overflow-hidden" style={{ paddingTop: '80px' }}>
+        {/* Grid background */}
+        <div className="absolute inset-0 opacity-15">
+          <div style={{
+            backgroundImage: 'linear-gradient(#00ffff 1px, transparent 1px), linear-gradient(90deg, #00ffff 1px, transparent 1px)',
+            backgroundSize: '50px 50px',
+            height: '100%'
+          }} />
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.h1
+            className="text-6xl font-bold mb-6"
+            style={{
+              background: 'linear-gradient(135deg, #00ffff, #ff00ff, #00ff00)',
+              backgroundClip: 'text',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              fontFamily: 'Electrolize, sans-serif',
+              letterSpacing: '0.1em'
+            }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            THE AETHEX ECOSYSTEM
+          </motion.h1>
+          <motion.p
+            className="text-xl max-w-3xl mx-auto mb-8"
+            style={{
+              color: '#a0a0a0',
+              fontFamily: 'Source Code Pro, monospace'
+            }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             A connected universe of platforms, each serving a different purpose in the multiverse.
-          </p>
+          </motion.p>
         </div>
       </section>
 
       {/* Interactive Map */}
       <EcosystemMap />
 
-      {/* Domains Overview */}
-      <section className="py-20 bg-slate-50">
+      {/* Platforms Overview */}
+      <section className="relative py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-slate-900 mb-12 text-center">
+          <motion.h2
+            className="text-4xl font-bold mb-12 text-center uppercase"
+            style={{
+              color: '#ffffff',
+              fontFamily: 'Electrolize, sans-serif',
+              letterSpacing: '0.1em'
+            }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
             The AeThex Network
-          </h2>
-          
-          {/* Consumer & Discovery */}
-          <div className="mb-16">
-            <h3 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3">
-              <div className="h-1 w-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
-              Consumer & Discovery
-            </h3>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-white border border-slate-200 rounded-xl p-8">
-                <div className="text-4xl mb-4">🌐</div>
-                <h4 className="text-2xl font-bold text-slate-900 mb-3">aethex.net</h4>
-                <p className="text-slate-600 mb-4">
-                  <strong>The Gateway</strong> - Consumer portal for players and creators
-                </p>
-                <span className="inline-block text-xs font-mono text-slate-500 bg-slate-100 px-2 py-1 rounded">Current Site</span>
-              </div>
-            </div>
-          </div>
+          </motion.h2>
 
-          {/* Infrastructure & Development */}
-          <div className="mb-16">
-            <h3 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3">
-              <div className="h-1 w-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
-              Infrastructure & Development
-            </h3>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="bg-white border border-slate-200 rounded-xl p-8">
-                <div className="text-4xl mb-4">☁️</div>
-                <h4 className="text-xl font-bold text-slate-900 mb-3">aethex.cloud</h4>
-                <p className="text-slate-600 text-sm mb-4">
-                  B2B SaaS APIs & infrastructure sales
-                </p>
-                <a href="https://aethex.cloud" className="text-blue-600 hover:text-blue-700 font-medium text-sm">
-                  Visit →
-                </a>
-              </div>
+          <div className="space-y-16">
+            {platforms.map((platform, categoryIndex) => (
+              <div key={platform.category}>
+                <motion.h3
+                  className="text-2xl font-bold mb-6 flex items-center gap-3 uppercase"
+                  style={{
+                    color: platform.color,
+                    fontFamily: 'Electrolize, sans-serif',
+                    letterSpacing: '0.05em',
+                    textShadow: `0 0 20px ${platform.color}`
+                  }}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: categoryIndex * 0.1 }}
+                >
+                  <div
+                    style={{
+                      height: '2px',
+                      width: '48px',
+                      background: platform.color,
+                      boxShadow: `0 0 10px ${platform.color}`
+                    }}
+                  />
+                  {platform.category}
+                </motion.h3>
 
-              <div className="bg-white border border-slate-200 rounded-xl p-8">
-                <div className="text-4xl mb-4">🏢</div>
-                <h4 className="text-xl font-bold text-slate-900 mb-3">aethex.inc</h4>
-                <p className="text-slate-600 text-sm mb-4">
-                  Enterprise solutions & contracts
-                </p>
-                <a href="https://aethex.inc" className="text-blue-600 hover:text-blue-700 font-medium text-sm">
-                  Visit →
-                </a>
+                <div className={`grid gap-6 ${platform.items.length === 1 ? 'md:grid-cols-1 max-w-2xl' : 'md:grid-cols-2 lg:grid-cols-3'}`}>
+                  {platform.items.map((item, itemIndex) => (
+                    <motion.div
+                      key={item.name}
+                      className="p-8 group"
+                      style={{
+                        background: 'rgba(0, 255, 255, 0.02)',
+                        border: `1px solid ${platform.color}40`,
+                        backdropFilter: 'blur(40px)',
+                        clipPath: 'polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px))',
+                        boxShadow: `inset 0 0 20px ${platform.color}10`,
+                        cursor: item.link ? 'pointer' : 'default'
+                      }}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: itemIndex * 0.1 }}
+                      whileHover={item.link ? { y: -5, scale: 1.02 } : {}}
+                      onClick={() => item.link && window.open(item.link, '_blank')}
+                    >
+                      <div className="text-4xl mb-4">{item.icon}</div>
+                      <h4
+                        className="text-xl font-bold mb-3"
+                        style={{
+                          color: '#ffffff',
+                          fontFamily: 'Electrolize, sans-serif',
+                          letterSpacing: '0.05em'
+                        }}
+                      >
+                        {item.name}
+                      </h4>
+                      <p
+                        className="text-sm mb-4"
+                        style={{
+                          color: '#a0a0a0',
+                          fontFamily: 'Source Code Pro, monospace'
+                        }}
+                      >
+                        {item.description}
+                      </p>
+                      <span
+                        className="inline-block text-xs font-bold px-2 py-1 uppercase"
+                        style={{
+                          backgroundColor: `${platform.color}20`,
+                          color: platform.color,
+                          border: `1px solid ${platform.color}`,
+                          fontFamily: 'Source Code Pro, monospace',
+                          letterSpacing: '0.1em',
+                          boxShadow: `0 0 10px ${platform.color}40`
+                        }}
+                      >
+                        {item.badge}
+                      </span>
+                      {item.link && (
+                        <div className="mt-4 flex items-center gap-2" style={{ color: platform.color }}>
+                          <span
+                            className="text-sm font-bold uppercase"
+                            style={{
+                              fontFamily: 'Source Code Pro, monospace',
+                              letterSpacing: '0.1em'
+                            }}
+                          >
+                            Visit
+                          </span>
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                          </svg>
+                        </div>
+                      )}
+                    </motion.div>
+                  ))}
+                </div>
               </div>
-
-              <div className="bg-white border border-slate-200 rounded-xl p-8">
-                <div className="text-4xl mb-4">👨‍💻</div>
-                <h4 className="text-xl font-bold text-slate-900 mb-3">aethex.dev</h4>
-                <p className="text-slate-600 text-sm mb-4">
-                  Developer portal & technical documentation
-                </p>
-                <a href="https://aethex.dev" className="text-blue-600 hover:text-blue-700 font-medium text-sm">
-                  Visit →
-                </a>
-              </div>
-
-              <div className="bg-white border border-slate-200 rounded-xl p-8">
-                <div className="text-4xl mb-4">⚙️</div>
-                <h4 className="text-xl font-bold text-slate-900 mb-3">aethex.tech</h4>
-                <p className="text-slate-600 text-sm mb-4">
-                  Integration guides & SDK documentation
-                </p>
-                <a href="https://aethex.tech" className="text-blue-600 hover:text-blue-700 font-medium text-sm">
-                  Visit →
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* Governance & Philosophy */}
-          <div className="mb-16">
-            <h3 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3">
-              <div className="h-1 w-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
-              Governance & Philosophy
-            </h3>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="bg-white border border-slate-200 rounded-xl p-8">
-                <div className="text-4xl mb-4">🏛️</div>
-                <h4 className="text-xl font-bold text-slate-900 mb-3">aethex.foundation</h4>
-                <p className="text-slate-600 text-sm mb-4">
-                  Community governance - The Soul, The Foundation
-                </p>
-                <a href="https://aethex.foundation" className="text-blue-600 hover:text-blue-700 font-medium text-sm">
-                  Visit →
-                </a>
-              </div>
-
-              <div className="bg-white border border-slate-200 rounded-xl p-8">
-                <div className="text-4xl mb-4">ℹ️</div>
-                <h4 className="text-xl font-bold text-slate-900 mb-3">aethex.info</h4>
-                <p className="text-slate-600 text-sm mb-4">
-                  Vision, lore, mythology, corporate info, investor relations, press, careers
-                </p>
-                <a href="https://aethex.info" className="text-blue-600 hover:text-blue-700 font-medium text-sm">
-                  Visit →
-                </a>
-              </div>
-
-              <div className="bg-white border border-slate-200 rounded-xl p-8">
-                <div className="text-4xl mb-4">🔗</div>
-                <h4 className="text-xl font-bold text-slate-900 mb-3">aethex.network</h4>
-                <p className="text-slate-600 text-sm mb-4">
-                  Ecosystem connections & interoperability showcase
-                </p>
-                <a href="https://aethex.network" className="text-blue-600 hover:text-blue-700 font-medium text-sm">
-                  Visit →
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* Creator & Community Tools */}
-          <div className="mb-16">
-            <h3 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3">
-              <div className="h-1 w-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
-              Creator & Community Tools
-            </h3>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="bg-white border border-slate-200 rounded-xl p-8">
-                <div className="text-4xl mb-4">🧪</div>
-                <h4 className="text-xl font-bold text-slate-900 mb-3">aethex.studio</h4>
-                <p className="text-slate-600 text-sm mb-4">
-                  The Labs - Experimental features & innovation hub
-                </p>
-                <a href="https://aethex.studio" className="text-blue-600 hover:text-blue-700 font-medium text-sm">
-                  Visit →
-                </a>
-              </div>
-
-              <div className="bg-white border border-slate-200 rounded-xl p-8">
-                <div className="text-4xl mb-4">📱</div>
-                <h4 className="text-xl font-bold text-slate-900 mb-3">aethex.app</h4>
-                <p className="text-slate-600 text-sm mb-4">
-                  Mobile/desktop AeThex Passport client
-                </p>
-                <a href="https://aethex.app" className="text-blue-600 hover:text-blue-700 font-medium text-sm">
-                  Visit →
-                </a>
-              </div>
-
-              <div className="bg-white border border-slate-200 rounded-xl p-8">
-                <div className="text-4xl mb-4">🚀</div>
-                <h4 className="text-xl font-bold text-slate-900 mb-3">aethex.space</h4>
-                <p className="text-slate-600 text-sm mb-4">
-                  Community spaces, forums, social hub
-                </p>
-                <a href="https://aethex.space" className="text-blue-600 hover:text-blue-700 font-medium text-sm">
-                  Visit →
-                </a>
-              </div>
-
-              <div className="bg-white border border-slate-200 rounded-xl p-8">
-                <div className="text-4xl mb-4">🔐</div>
-                <h4 className="text-xl font-bold text-slate-900 mb-3">aethex.locker</h4>
-                <p className="text-slate-600 text-sm mb-4">
-                  Asset storage & inventory management
-                </p>
-                <a href="https://aethex.locker" className="text-blue-600 hover:text-blue-700 font-medium text-sm">
-                  Visit →
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* Utility & Services */}
-          <div className="mb-16">
-            <h3 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3">
-              <div className="h-1 w-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
-              Utility & Services
-            </h3>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="bg-white border border-slate-200 rounded-xl p-8">
-                <div className="text-4xl mb-4">👤</div>
-                <h4 className="text-xl font-bold text-slate-900 mb-3">aethex.me</h4>
-                <p className="text-slate-600 text-sm mb-4">
-                  Personal profile pages (user.aethex.me)
-                </p>
-                <a href="https://aethex.me" className="text-blue-600 hover:text-blue-700 font-medium text-sm">
-                  Visit →
-                </a>
-              </div>
-
-              <div className="bg-white border border-slate-200 rounded-xl p-8">
-                <div className="text-4xl mb-4">❓</div>
-                <h4 className="text-xl font-bold text-slate-900 mb-3">aethex.sbs</h4>
-                <p className="text-slate-600 text-sm mb-4">
-                  Purpose TBD
-                </p>
-                <span className="text-slate-400 text-xs">Coming Soon</span>
-              </div>
-
-              <div className="bg-white border border-slate-200 rounded-xl p-8">
-                <div className="text-4xl mb-4">🔄</div>
-                <h4 className="text-xl font-bold text-slate-900 mb-3">aethex.site</h4>
-                <p className="text-slate-600 text-sm mb-4">
-                  Purpose TBD - potentially redirect to aethex.net
-                </p>
-                <span className="text-slate-400 text-xs">Coming Soon</span>
-              </div>
-
-              <div className="bg-white border border-slate-200 rounded-xl p-8">
-                <div className="text-4xl mb-4">📝</div>
-                <h4 className="text-xl font-bold text-slate-900 mb-3">waitlist.aethex</h4>
-                <p className="text-slate-600 text-sm mb-4">
-                  Centralized waitlist for all AeThex products
-                </p>
-                <a href="https://waitlist.aethex" className="text-blue-600 hover:text-blue-700 font-medium text-sm">
-                  Join Waitlist →
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* Monitoring & Status */}
-          <div className="mb-0">
-            <h3 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3">
-              <div className="h-1 w-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
-              Monitoring & Status
-            </h3>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-white border border-slate-200 rounded-xl p-8">
-                <div className="text-4xl mb-4">📊</div>
-                <h4 className="text-xl font-bold text-slate-900 mb-3">status.aethex.net</h4>
-                <p className="text-slate-600 text-sm mb-4">
-                  System status dashboard
-                </p>
-                <a href="/status" className="text-blue-600 hover:text-blue-700 font-medium text-sm">
-                  View Status →
-                </a>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>

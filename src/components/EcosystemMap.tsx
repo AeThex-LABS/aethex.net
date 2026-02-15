@@ -23,7 +23,7 @@ const EcosystemMap: React.FC = () => {
       description: 'Play across connected experiences',
       link: '/experiences',
       position: 'top-1/4 left-1/4', 
-      color: '#3b82f6' 
+      color: '#00ffff' 
     },
     { 
       id: 'studio',
@@ -32,7 +32,7 @@ const EcosystemMap: React.FC = () => {
       description: 'Build your own experiences',
       link: 'https://aethex.studio',
       position: 'top-1/4 right-1/4', 
-      color: '#eab308' 
+      color: '#ff00ff' 
     },
     { 
       id: 'locker',
@@ -41,7 +41,7 @@ const EcosystemMap: React.FC = () => {
       description: 'Your items across all games',
       link: 'https://aethex.locker',
       position: 'bottom-1/4 left-1/4', 
-      color: '#14b8a6' 
+      color: '#00ff00' 
     },
     { 
       id: 'foundation',
@@ -50,7 +50,7 @@ const EcosystemMap: React.FC = () => {
       description: 'Community governance',
       link: '/foundation',
       position: 'bottom-1/4 right-1/4', 
-      color: '#ef4444' 
+      color: '#ff00ff' 
     },
   ];
 
@@ -59,11 +59,14 @@ const EcosystemMap: React.FC = () => {
   return (
     <section 
       className="relative py-24 overflow-hidden"
-      style={{ backgroundColor: 'var(--bg-primary)' }}
+      style={{ backgroundColor: '#000000' }}
     >
-      {/* Animated grid background */}
+      {/* Grid background */}
       <div className="absolute inset-0">
-        <div className="grid-background-animated absolute inset-0 opacity-15" />
+        <div className="absolute inset-0 opacity-15" style={{
+          backgroundImage: 'linear-gradient(#00ffff 1px, transparent 1px), linear-gradient(90deg, #00ffff 1px, transparent 1px)',
+          backgroundSize: '50px 50px'
+        }} />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -76,30 +79,42 @@ const EcosystemMap: React.FC = () => {
           transition={{ duration: 0.6 }}
         >
           <div 
-            className="inline-block px-4 py-2 rounded-full mb-4"
+            className="inline-block px-4 py-2 mb-4"
             style={{
-              backgroundColor: 'var(--bg-secondary)',
-              border: '1px solid var(--border-primary)'
+              backgroundColor: 'rgba(0, 255, 255, 0.05)',
+              border: '1px solid rgba(0, 255, 255, 0.3)',
+              clipPath: 'polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px))'
             }}
           >
             <span 
               className="text-sm font-mono uppercase tracking-wider"
-              style={{ color: 'var(--accent-purple)' }}
+              style={{ 
+                color: '#00ffff',
+                fontFamily: 'Source Code Pro, monospace',
+                letterSpacing: '0.15em'
+              }}
             >
-              🗺️ Ecosystem Map
+              🗺️ ECOSYSTEM MAP
             </span>
           </div>
           
           <h2 
             className="text-4xl sm:text-5xl font-bold mb-4"
-            style={{ color: 'var(--text-primary)' }}
+            style={{ 
+              color: '#ffffff',
+              fontFamily: 'Electrolize, sans-serif',
+              letterSpacing: '0.1em'
+            }}
           >
             Everything Connects
           </h2>
           
           <p 
             className="text-xl max-w-2xl mx-auto"
-            style={{ color: 'var(--text-secondary)' }}
+            style={{ 
+              color: '#a0a0a0',
+              fontFamily: 'Source Code Pro, monospace'
+            }}
           >
             Your identity and progress flow seamlessly across all platforms
           </p>
@@ -107,10 +122,13 @@ const EcosystemMap: React.FC = () => {
 
         {/* Interactive Map Visualization */}
         <motion.div 
-          className="relative aspect-video rounded-2xl overflow-hidden"
+          className="relative aspect-video overflow-hidden"
           style={{
-            backgroundColor: 'var(--bg-secondary)',
-            border: '1px solid var(--border-primary)'
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            border: '1px solid rgba(0, 255, 255, 0.3)',
+            clipPath: 'polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px))',
+            backdropFilter: 'blur(40px)',
+            boxShadow: 'inset 0 0 40px rgba(0, 255, 255, 0.1)'
           }}
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -135,19 +153,25 @@ const EcosystemMap: React.FC = () => {
                 <div 
                   className="w-32 h-32 rounded-full flex items-center justify-center shadow-2xl"
                   style={{
-                    background: 'linear-gradient(135deg, #8b5cf6, #3b82f6)',
-                    boxShadow: hoveredNode === 'passport' ? '0 0 40px rgba(139, 92, 246, 0.6)' : '0 0 20px rgba(139, 92, 246, 0.3)'
+                    background: 'linear-gradient(135deg, #00ffff, #ff00ff)',
+                    boxShadow: hoveredNode === 'passport' ? '0 0 60px #00ffff, 0 0 90px #ff00ff' : '0 0 30px rgba(0, 255, 255, 0.5), 0 0 60px rgba(255, 0, 255, 0.3)',
+                    border: '2px solid #00ffff'
                   }}
                 >
                   <div className="text-center">
                     <div className="text-3xl mb-1">🌐</div>
-                    <div className="text-xs font-bold text-white">AeThex<br/>Passport</div>
+                    <div className="text-xs font-bold uppercase" style={{
+                      color: '#000000',
+                      fontFamily: 'Source Code Pro, monospace',
+                      letterSpacing: '0.1em',
+                      textShadow: '0 0 5px rgba(255, 255, 255, 0.5)'
+                    }}>AeThex<br/>Passport</div>
                   </div>
                 </div>
                 {/* Pulsing rings */}
                 <motion.div 
                   className="absolute inset-0 rounded-full"
-                  style={{ border: '2px solid rgba(139, 92, 246, 0.3)' }}
+                  style={{ border: '2px solid #00ffff' }}
                   animate={{ scale: [1, 1.5], opacity: [0.5, 0] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 />
@@ -187,10 +211,13 @@ const EcosystemMap: React.FC = () => {
                   
                   {/* Label */}
                   <div 
-                    className="absolute top-full mt-2 left-1/2 transform -translate-x-1/2 whitespace-nowrap text-xs font-semibold text-center"
+                    className="absolute top-full mt-2 left-1/2 transform -translate-x-1/2 whitespace-nowrap text-xs font-bold text-center uppercase"
                     style={{ 
-                      color: isHovered ? 'var(--text-primary)' : 'var(--text-secondary)',
-                      opacity: isHovered ? 1 : 0.7
+                      color: isHovered ? '#ffffff' : '#a0a0a0',
+                      opacity: isHovered ? 1 : 0.7,
+                      fontFamily: 'Source Code Pro, monospace',
+                      letterSpacing: '0.1em',
+                      textShadow: isHovered ? `0 0 10px ${node.color}` : 'none'
                     }}
                   >
                     {node.name}
@@ -199,12 +226,14 @@ const EcosystemMap: React.FC = () => {
                   {/* Description on hover */}
                   {isHovered && (
                     <motion.div
-                      className="absolute top-full mt-8 left-1/2 transform -translate-x-1/2 px-3 py-2 rounded-lg whitespace-nowrap text-xs"
+                      className="absolute top-full mt-8 left-1/2 transform -translate-x-1/2 px-3 py-2 whitespace-nowrap text-xs"
                       style={{
-                        backgroundColor: 'var(--bg-elevated)',
-                        border: '1px solid var(--border-primary)',
-                        color: 'var(--text-secondary)',
-                        boxShadow: 'var(--shadow-lg)'
+                        backgroundColor: 'rgba(0, 0, 0, 0.9)',
+                        border: `1px solid ${node.color}`,
+                        color: '#ffffff',
+                        boxShadow: `0 0 20px ${node.color}80`,
+                        fontFamily: 'Source Code Pro, monospace',
+                        clipPath: 'polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 4px 100%, 0 calc(100% - 4px))'
                       }}
                       initial={{ opacity: 0, y: -5 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -283,20 +312,34 @@ const EcosystemMap: React.FC = () => {
           ].map((feature, index) => (
             <motion.div
               key={index}
-              className="text-center card"
+              className="text-center p-6"
+              style={{
+                background: 'rgba(0, 255, 255, 0.02)',
+                border: '1px solid rgba(0, 255, 255, 0.3)',
+                backdropFilter: 'blur(40px)',
+                clipPath: 'polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))',
+                boxShadow: 'inset 0 0 20px rgba(0, 255, 255, 0.05)'
+              }}
               whileHover={{ y: -5 }}
               transition={{ duration: 0.2 }}
             >
               <div className="text-4xl mb-3">{feature.icon}</div>
               <h3 
-                className="text-lg font-semibold mb-2"
-                style={{ color: 'var(--text-primary)' }}
+                className="text-lg font-bold mb-2 uppercase"
+                style={{ 
+                  color: '#ffffff',
+                  fontFamily: 'Electrolize, sans-serif',
+                  letterSpacing: '0.05em'
+                }}
               >
                 {feature.title}
               </h3>
               <p 
                 className="text-sm"
-                style={{ color: 'var(--text-secondary)' }}
+                style={{ 
+                  color: '#a0a0a0',
+                  fontFamily: 'Source Code Pro, monospace'
+                }}
               >
                 {feature.description}
               </p>
