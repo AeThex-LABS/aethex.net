@@ -1,0 +1,20 @@
+{
+  "name": "AeThex - Where the Universe Meets You",
+  "short_name": "AeThex",
+  "description": "One identity. Infinite worlds. Create your AeThex Passport and explore a connected gaming ecosystem where your progress follows you everywhere.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#00ffff",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["games", "entertainment"],
+  "screenshots": []
+}

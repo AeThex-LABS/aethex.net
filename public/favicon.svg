@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <rect width="64" height="64" fill="#000000"/>
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00ffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ff00ff;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <!-- Hexagon shape -->
+  <path d="M32 8 L48 18 L48 38 L32 48 L16 38 L16 18 Z" stroke="url(#gradient)" stroke-width="2" fill="none" filter="url(#glow)"/>
+  <!-- Æ Letter stylized -->
+  <path d="M 24 22 L 28 22 L 32 30 L 36 22 L 40 22 L 32 38 L 24 22 Z" fill="url(#gradient)" filter="url(#glow)"/>
+  <line x1="26" y1="30" x2="38" y2="30" stroke="url(#gradient)" stroke-width="2" filter="url(#glow)"/>
+</svg>
