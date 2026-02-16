@@ -5,10 +5,10 @@ import Home from './pages/Home';
 import Experiences from './pages/Experiences';
 import Ecosystem from './pages/Ecosystem';
 import Passport from './pages/Passport';
-import Foundation from './pages/Foundation';
-import Developers from './pages/Developers';
-import Creators from './pages/Creators';
+import Build from './pages/Build';
 import Status from './pages/Status';
+import Privacy from './pages/Privacy';
+import Terms from './pages/Terms';
 
 function App() {
   return (
@@ -21,10 +21,10 @@ function App() {
             <Route path="/experiences" element={<Experiences />} />
             <Route path="/ecosystem" element={<Ecosystem />} />
             <Route path="/passport" element={<Passport />} />
-            <Route path="/foundation" element={<Foundation />} />
-            <Route path="/developers" element={<Developers />} />
-            <Route path="/creators" element={<Creators />} />
+            <Route path="/build" element={<Build />} />
             <Route path="/status" element={<Status />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/terms" element={<Terms />} />
           </Routes>
         </main>
         <Footer />
