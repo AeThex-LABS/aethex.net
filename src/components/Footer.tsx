@@ -153,7 +153,7 @@ const Footer: React.FC = () => {
               <ul className="space-y-3">
                 {links.map((link) => (
                   <li key={link.label}>
-                    {link.external ? (
+                    {link.to.startsWith('http') || link.to.startsWith('mailto:') ? (
                       <a 
                         href={link.to}
                         target={link.to.startsWith('http') ? '_blank' : undefined}

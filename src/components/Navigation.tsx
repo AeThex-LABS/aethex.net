@@ -188,37 +188,9 @@ export const Navigation = () => {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-6 relative z-10 ml-8">
             {navLinks.map((link) => {
-              const isActive = !link.external && location.pathname === link.path;
+              const isActive = location.pathname === link.path;
               const Icon = link.icon;
-              return link.external ? (
-                <a
-                  key={link.name}
-                  href={link.path}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-3 py-2 text-xs font-medium transition-all relative group flex items-center gap-2"
-                  style={{ 
-                    color: '#a0a0a0',
-                    textDecoration: 'none',
-                    fontFamily: 'Source Code Pro, monospace',
-                    letterSpacing: '0.05em',
-                    clipPath: 'polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px))',
-                    border: '1px solid rgba(0, 255, 255, 0.3)',
-                    background: 'rgba(0, 255, 255, 0.05)',
-                    boxShadow: 'inset 0 0 10px rgba(0, 255, 255, 0.1)'
-                  }}
-                >
-                  <div 
-                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity"
-                    style={{ 
-                      background: 'rgba(0, 255, 255, 0.15)',
-                      boxShadow: '0 0 20px rgba(0, 255, 255, 0.6), inset 0 0 10px rgba(0, 255, 255, 0.3)'
-                    }}
-                  />
-                  <Icon size={16} weight="duotone" className="relative z-10" />
-                  <span className="relative z-10">{link.name.toUpperCase()}</span>
-                </a>
-              ) : (
+              return (
                 <Link
                   key={link.name}
                   to={link.path}
@@ -365,30 +337,9 @@ export const Navigation = () => {
           >
             <div className="px-4 py-6 space-y-2 max-w-7xl mx-auto">
               {navLinks.map((link) => {
-                const isActive = !link.external && location.pathname === link.path;
+                const isActive = location.pathname === link.path;
                 const Icon = link.icon;
-                return link.external ? (
-                  <a
-                    key={link.name}
-                    href={link.path}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-3 px-4 py-3 text-sm font-medium transition-colors"
-                    style={{ 
-                      color: '#a0a0a0',
-                      textDecoration: 'none',
-                      backgroundColor: 'rgba(0, 255, 255, 0.05)',
-                      border: '1px solid rgba(0, 255, 255, 0.3)',
-                      fontFamily: 'Source Code Pro, monospace',
-                      letterSpacing: '0.05em',
-                      boxShadow: 'inset 0 0 10px rgba(0, 255, 255, 0.1)'
-                    }}
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    <Icon size={16} weight="duotone" />
-                    {link.name.toUpperCase()}
-                  </a>
-                ) : (
+                return (
                   <Link
                     key={link.name}
                     to={link.path}
